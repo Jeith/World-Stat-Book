@@ -1,11 +1,9 @@
 html{
-    background: white;
+    background: black;
 }
 
 #banner{
     background-color: navy;
-    /* background-image: url('https://images6.alphacoders.com/400/thumb-1920-400645.jpg');
-     */
     height: 80px;
     color: white;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -31,9 +29,12 @@ html{
 .earth{
     width: 400px;
     height: 400px;
-    /* background-image: url('https://media.treehugger.com/assets/images/2013/06/1.jpg');
-     */
-    background-image: url('https://images6.alphacoders.com/400/thumb-1920-400645.jpg');
+    /* background-image: url('http://www.gotosee.tv/gotosee/motionselector/motion/Three.js/images/earth-outline-shifted-gray.png'); */
+
+    background-image: url('https://media.treehugger.com/assets/images/2013/06/1.jpg');
+    
+    /* background-image: url('https://images6.alphacoders.com/400/thumb-1920-400645.jpg'); */
+
     position: absolute;
     top: 0;
     bottom: 0;
