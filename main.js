@@ -2,10 +2,12 @@
 (function() {
     var $searchbutton = $('#searchbutton');
     $searchbutton.click( function(e) {
+        
         var $searchbar = $('#searchbar')
         e.preventDefault();  
         var $country = $searchbar.val();
         var cc;
+        localStorage.setItem('searchResult', $country)
         switch($country){
             case "aruba":
                 cc = "aa";
@@ -259,7 +261,7 @@
             case "french southern and antarctic lands":
                 cc = "fs";
                 break; 
-            case "gambia, the":
+            case "the gambia":
                 cc = "ga";
                 break;  
             case "gabon":
@@ -764,6 +766,7 @@
             cc = "zi";
                 break;
         }
+        window.location.href = ("test.html")
         var url = 'https://raw.githubusercontent.com/Jeith/worldfactbookapi/master/countries/' + cc + ".json";
     
     $.get(url)
@@ -773,6 +776,7 @@
         // console.log(response);
         let responseObject = JSON.parse(response);
         updateUISuccess(responseObject)
+      
     })
 
     .fail(function(error){
@@ -783,9 +787,6 @@
 
     function updateUISuccess(response){
         console.log(response);
-        var intro = response.Geography.Location.text;
-        var head = document.getElementById('head');
-        head.innerHTML = "<h4>" + intro + "</h4>";
 
        var ctx = document.getElementById("chart1");
         var agegroup1 = response["People and Society"]["Age structure"]["0-14 years"].text;
@@ -799,13 +800,13 @@
         var age64 = agegroup4.split("", 2);
         var age65 = agegroup5.split("", 2);
         console.log(age14.join(""));
-        var ageChart = new Chart(ctx, {
+        new Chart(ctx, {
             type: 'doughnut',
             data: {
                 labels: ["0-14 years", "15-24 years", "25-54 years", "55-64 years", "65 years and older"],
                 datasets: [
                   {
-                    label: "Population (millions)",
+                    label: "Population (Pecentage)",
                     backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
                     data: [age14.join(""),age24.join(""),age54.join(""),age64.join(""),age65.join("")]
                   }
@@ -822,5 +823,14 @@
     }
     function updateUIError(){
     }
-}); 
+})
+
+; 
 })(); 
+
+function loadSearchResults(){
+    window.onload=function(){
+        console.log("this function is firing")
+    }
+
+}
