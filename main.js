@@ -7,6 +7,369 @@
         var $country = $searchbar.val();
         var cc;
         switch($country){
+            case "aruba":
+                cc = "aa";
+                break;
+            case "antigua and barbuda":
+                cc = "ac";
+                break;
+            case "united arab emirates":
+                cc = "ae";
+                break;
+            case "afghanistan":
+                cc = "af";
+                break;
+            case "algeria":
+                cc = "ag";
+                break;
+            case "azerbanijan":
+                cc = "aj";
+                break;
+            case "albania":
+                cc = "al";
+                break;
+            case "armenia":
+                cc = "am";
+                break;
+            case "andorra":
+                cc = "an";
+                break;   
+            case "angola":
+                cc = "ao";
+                break;
+            case "american somoa":
+                cc = "aq";
+                break;
+            case "argentina":
+                cc = "ar";
+                break;
+            case "australia":
+                cc = "as";
+                break;
+            case "ashmore and cartier islands":
+                cc = "at";
+                break;
+            case "austria":
+                cc = "au";
+                break;
+            case "anguilla":
+                cc = "av";
+                break;
+            case "akrotiri":
+                cc = "ax";
+                break;  
+            case "antarctica":
+                cc = "ay";
+                break;
+            case "bahrain":
+                cc = "ba";
+                break;
+            case "barbados":
+                cc = "bb";
+                break;
+            case "botswana":
+                cc = "bc";
+                break;
+            case "bermuda":
+                cc = "bd";
+                break;
+            case "belgium":
+                cc = "be";
+                break;
+            case "Bahamas":
+                cc = "bf";
+                break;
+            case "bangladesh":
+                cc = "bg";
+                break;
+            case "belize":
+                cc = "bh";
+                break;
+            case "bosnia and herzegovina":
+                cc = "bk";
+                break;
+            case "bolivia":
+                cc = "bl";
+                break;
+            case "burma":
+                cc = "bm";
+                break;
+            case "benin":
+                cc = "bn";
+                break;
+            case "belarus":
+                cc = "bo";
+                break;
+            case "solomon islands":
+                cc = "bp";
+                break;
+            case "navassa island":
+                cc = "bq";
+                break; 
+            case "brazil":
+                cc = "br";
+                break;
+            case "bhutan":
+                cc = "bt";
+                break;
+            case "bulgaria":
+                cc = "bu";
+                break;
+            case "bouvet island":
+                cc = "bv";
+                break;
+            case "brunei":
+                cc = "bx";
+                break;
+            case "burundi":
+                cc = "by";
+                break;
+            case "canada":
+                cc = "ca";
+                break;
+            case "cambodia":
+                cc = "cb";
+                break;
+            case "curacao":
+                cc = "cc";
+                break;
+            case "chad":
+                cc = "cd";
+                break;
+            case "sri lanka":
+                cc = "ce";
+                break;
+            case "congo, republic of the":
+                cc = "cf";
+                break;
+            case "democratic republic of the congo":
+                cc = "cg";
+                break;
+            case "china":
+                cc = "ch";
+                break;
+            case "chile":
+                cc = "ci";
+                break;
+            case "cayman islands":
+                cc = "cj";
+                break;  
+            case "cocos islands":
+                cc = "ck";
+                break; 
+            case "cameroon":
+                cc = "cm";
+                break; 
+            case "comoros":
+                cc = "cn";
+                break; 
+            case "colombia":
+                cc = "co";
+                break;     
+            case "northern mariana islands":
+                cc = "cq";
+                break; 
+            case "coral sea islands":
+                cc = "cr";
+                break; 
+            case "costa rica":
+                cc = "cs";
+                break; 
+            case "central african republic":
+                cc = "ct";
+                break;  
+            case "cuba":
+                cc = "cu";
+                break; 
+            case "cabo verde":
+                cc = "cv";
+                break; 
+            case "cook islands":
+                cc = "cw";
+                break; 
+            case "cyprus":
+                cc = "cy";
+                break;     
+            case "denmark":
+                cc = "da";
+                break; 
+            case "djibouti":
+                cc = "dj";
+                break; 
+            case "dominica":
+                cc = "do";
+                break; 
+            case "dominican republic":
+                cc = "dr";
+                break; 
+            case "dhekelia":
+                cc = "dx";
+                break; 
+            case "ecuador":
+                cc = "ec";
+                break;     
+            case "european union":
+                cc = "ee";
+                break; 
+            case "egypt":
+                cc = "eg";
+                break; 
+            case "ireland":
+                cc = "ei";
+                break; 
+            case "equatorial guinea":
+                cc = "ek";
+                break;  
+            case "estonia":
+                cc = "en";
+                break; 
+            case "eritrea":
+                cc = "er";
+                break; 
+            case "el salvador":
+                cc = "es";
+                break; 
+            case "ethiopia":
+                cc = "et";
+                break;     
+            case "czech republic":
+                cc = "ez";
+                break; 
+            case "finland":
+                cc = "fi";
+                break; 
+            case "fiji":
+                cc = "fj";
+                break; 
+            case "falkland islands":
+                cc = "fk";
+                break;
+            case "micronesia":
+                cc = "fm";
+                break; 
+            case "faroe islands":
+                cc = "fo";
+                break;     
+            case "french polynesia":
+                cc = "fp";
+                break; 
+            case "france":
+                cc = "fr";
+                break; 
+            case "french southern and antarctic lands":
+                cc = "fs";
+                break; 
+            case "gambia, the":
+                cc = "ga";
+                break;  
+            case "gabon":
+                cc = "gb";
+                break; 
+            case "georgia":
+                cc = "gg";
+                break; 
+            case "ghana":
+                cc = "gh";
+                break; 
+            case "gibralter":
+                cc = "gi";
+                break;     
+            case "grenada":
+                cc = "gj";
+                break; 
+            case "guernsey":
+                cc = "gk";
+                break; 
+            case "greenland":
+                cc = "gl";
+                break; 
+            case "germany":
+                cc = "gm";
+                break; 
+            case "guam":
+                cc = "gq";
+                break; 
+            case "greece":
+                cc = "gr";
+                break;     
+            case "guatemala":
+                cc = "gt";
+                break; 
+            case "guinea":
+                cc = "gv";
+                break; 
+            case "guyana":
+                cc = "gy";
+                break; 
+            case "gaza strip":
+                cc = "gz";
+                break;  
+            case "haiti":
+                cc = "ha";
+                break; 
+            case "hong kong":
+                cc = "hk";
+                break; 
+            case "heard island and mcdonald islands":
+                cc = "hm";
+                break; 
+            case "honduras":
+                cc = "ho";
+                break;     
+            case "croatia":
+                cc = "hr";
+                break; 
+            case "hungary":
+                cc = "hu";
+                break; 
+            case "iceland":
+                cc = "ic";
+                break; 
+            case "indonesia":
+                cc = "id";
+                break; 
+            case "isle of man":
+                cc = "im";
+                break; 
+            case "india":
+                cc = "in";
+                break;     
+            case "british indian ocean territory":
+                cc = "io";
+                break; 
+            case "clipperton island":
+                cc = "ip";
+                break; 
+            case "iran":
+                cc = "ir";
+                break; 
+            case "israel":
+                cc = "is";
+                break;  
+            case "italy":
+                cc = "it";
+                break; 
+            case "cote d'lvoire":
+                cc = "iv";
+                break; 
+            case "iraq":
+                cc = "iz";
+                break; 
+            case "japan":
+                cc = "ja";
+                break;     
+            case "jersey":
+                cc = "je";
+                break; 
+            case "jamaica":
+                cc = "jm";
+                break; 
+            case "jan mayen":
+                cc = "jn";
+                break; 
+            case "jordan":
+                cc = "jo";
+                break; 
             case "kenya":
             cc = "ke";
                 break;
@@ -310,281 +673,97 @@
             case "sao tome and principe":
             cc = "tp";
                 break;
-            case "":
-            cc = "";
+            case "tunisia":
+            cc = "timor-leste";
                 break;
-            case "":
-            cc = "";
+            case "turkey":
+            cc = "tu";
                 break;
-            case "":
-            cc = "";
+            case "tuvalu":
+            cc = "tv";
                 break;
-            case "":
-            cc = "";
+            case "taiwan":
+            cc = "tw";
                 break;
-            case "":
-            cc = "";
+            case "turkmenistan":
+            cc = "tx";
                 break;
-            case "":
-            cc = "";
+            case "tanzania":
+            cc = "tz";
                 break;
-            case "":
-            cc = "";
+            case "uganda":
+            cc = "ug";
                 break;
-            case "":
-            cc = "";
+            case "united kingdom":
+            cc = "uk";
                 break;
-            case "":
-            cc = "";
+            case "united states pacific island wildlife refuges":
+            cc = "um";
                 break;
-            case "":
-            cc = "";
+            case "ukraine":
+            cc = "up";
                 break;
-            case "":
-            cc = "";
+            case "united states":
+            cc = "us";
                 break;
-            case "":
-            cc = "";
+            case "burkina faso":
+            cc = "uv";
                 break;
-            case "":
-            cc = "";
+            case "uruguay":
+            cc = "uy";
                 break;
-            case "":
-            cc = "";
+            case "uzbekistan":
+            cc = "uz";
                 break;
-            case "":
-            cc = "";
+            case "saint vincent and the grenadines":
+            cc = "vc";
                 break;
-            case "":
-            cc = "";
+            case "venezuela":
+            cc = "ve";
                 break;
-            case "":
-            cc = "";
+            case "british virgin islands":
+            cc = "vi";
                 break;
-            case "":
-            cc = "";
+            case "vietnam":
+            cc = "vm";
                 break;
-            case "":
-            cc = "";
+            case "virgin islands":
+            cc = "vq";
                 break;
-            case "":
-            cc = "";
+            case "vatican city":
+            cc = "vt";
                 break;
-            case "":
-            cc = "";
+            case "namibia":
+            cc = "wa";
                 break;
-            case "":
-            cc = "";
+            case "west bank":
+            cc = "we";
                 break;
-            case "":
-            cc = "";
+            case "wallis and futuna":
+            cc = "wf";
                 break;
-            case "":
-            cc = "";
+            case "western sahara":
+            cc = "wi";
                 break;
-            case "":
-            cc = "";
+            case "wake island":
+            cc = "wq";
                 break;
-            case "":
-            cc = "";
+            case "samoa":
+            cc = "ws";
                 break;
-            case "":
-            cc = "";
+            case "swaziland":
+            cc = "wz";
                 break;
-            case "":
-            cc = "";
+            case "yemen":
+            cc = "ym";
                 break;
-            case "":
-            cc = "";
+            case "zambia":
+            cc = "za";
                 break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
-                break;
-            case "":
-            cc = "";
+            case "zimbabwe":
+            cc = "zi";
                 break;
         }
-
         var url = 'https://raw.githubusercontent.com/Jeith/worldfactbookapi/master/countries/' + cc + ".json";
     
     $.get(url)
@@ -606,7 +785,40 @@
         console.log(response);
         var intro = response.Geography.Location.text;
         var head = document.getElementById('head');
-        head.innerHTML = "<h4>" + intro + "</h4>"
+        head.innerHTML = "<h4>" + intro + "</h4>";
+
+       var ctx = document.getElementById("chart1");
+        var agegroup1 = response["People and Society"]["Age structure"]["0-14 years"].text;
+        var agegroup2 = response["People and Society"]["Age structure"]["15-24 years"].text;
+        var agegroup3 = response["People and Society"]["Age structure"]["25-54 years"].text;
+        var agegroup4 = response["People and Society"]["Age structure"]["55-64 years"].text;
+        var agegroup5 = response["People and Society"]["Age structure"]["65 years and over"].text;
+        var age14 = agegroup1.split("", 2);
+        var age24 = agegroup2.split("", 2);
+        var age54 = agegroup3.split("", 2);
+        var age64 = agegroup4.split("", 2);
+        var age65 = agegroup5.split("", 2);
+        console.log(age14.join(""));
+        var ageChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ["0-14 years", "15-24 years", "25-54 years", "55-64 years", "65 years and older"],
+                datasets: [
+                  {
+                    label: "Population (millions)",
+                    backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                    data: [age14.join(""),age24.join(""),age54.join(""),age64.join(""),age65.join("")]
+                  }
+                ]
+              },
+            options: {
+                title: {
+                  display: true,
+                  text: 'Age Structure'
+                }
+            }
+        });
+
     }
     function updateUIError(){
     }
