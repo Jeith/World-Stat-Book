@@ -1,0 +1,64 @@
+html{
+    background: white;
+}
+
+#banner{
+    background-color: navy;
+    /* background-image: url('https://images6.alphacoders.com/400/thumb-1920-400645.jpg');
+     */
+    height: 80px;
+    color: white;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 50px;
+    text-align: center;
+    
+}
+
+#search{
+    /* position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto; */
+
+    display: flex;
+    justify-content: center;
+    background: navy;
+    margin-top: 0px;
+}
+
+.earth{
+    width: 400px;
+    height: 400px;
+    /* background-image: url('https://media.treehugger.com/assets/images/2013/06/1.jpg');
+     */
+    background-image: url('https://images6.alphacoders.com/400/thumb-1920-400645.jpg');
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* margin: auto; will center */
+    margin: auto; 
+    border-radius: 50%;
+    background-size: cover;
+    background-repeat: repeat-x;
+    box-shadow: -20px -20px 50px 2px black inset, 0 0 20px 2px #000;
+    animation: spin 40s linear infinite;
+    /* can add parameter alternate to switch direction of rotation */
+
+}
+
+@keyframes spin{
+    /* 100%{
+        background-position: 100%;
+    } */
+
+    from{
+        background-position: 0 0;
+    }
+    to{
+        background-position: 100% 0;
+    }
+}
