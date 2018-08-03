@@ -787,38 +787,272 @@
         var head = document.getElementById('head');
         head.innerHTML = "<h4>" + intro + "</h4>";
 
-       var ctx = document.getElementById("chart1");
-        var agegroup1 = response["People and Society"]["Age structure"]["0-14 years"].text;
-        var agegroup2 = response["People and Society"]["Age structure"]["15-24 years"].text;
-        var agegroup3 = response["People and Society"]["Age structure"]["25-54 years"].text;
-        var agegroup4 = response["People and Society"]["Age structure"]["55-64 years"].text;
-        var agegroup5 = response["People and Society"]["Age structure"]["65 years and over"].text;
-        var age14 = agegroup1.split("", 2);
-        var age24 = agegroup2.split("", 2);
-        var age54 = agegroup3.split("", 2);
-        var age64 = agegroup4.split("", 2);
-        var age65 = agegroup5.split("", 2);
-        console.log(age14.join(""));
-        var ageChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ["0-14 years", "15-24 years", "25-54 years", "55-64 years", "65 years and older"],
+        var ctx1 = document.getElementById("chart1");
+        var ctx2 = document.getElementById("chart2");
+        var ctx3 = document.getElementById("chart3");
+        var ctx4 = document.getElementById("chart4");
+        var ctx5 = document.getElementById("chart5");
+        var ctx6 = document.getElementById("chart6");
+        var ctx7 = document.getElementById("chart7");
+        var ctx8 = document.getElementById("chart8");
+        var ctx9 = document.getElementById("chart9");
+        var ctx10 = document.getElementById("chart10");
+        function ageGroupG(){
+            var agegroup1 = response["People and Society"]["Age structure"]["0-14 years"].text.replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, "").replace(/[%]/g, '');
+            var agegroup2 = response["People and Society"]["Age structure"]["15-24 years"].text.replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, "").replace(/[%]/g, '');
+            var agegroup3 = response["People and Society"]["Age structure"]["25-54 years"].text.replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, "").replace(/[%]/g, '');
+            var agegroup4 = response["People and Society"]["Age structure"]["55-64 years"].text.replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, "").replace(/[%]/g, '');
+            var agegroup5 = response["People and Society"]["Age structure"]["65 years and over"].text.replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, "").replace(/[%]/g, '');
+            new Chart(ctx1, {
+                type: 'doughnut',
+                data: {
+                    labels: ["0-14 years", "15-24 years", "25-54 years", "55-64 years", "65 years and older"],
+                    datasets: [
+                    {
+                        label: "Population (millions)",
+                        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                        data: [agegroup1,agegroup2,agegroup3,agegroup4,agegroup5]
+                    }
+                    ]
+                },
+                options: {
+                    title: {
+                    display: true,
+                    text: 'Age Structure'
+                    }
+                }
+            });
+        }
+        ageGroupG();
+
+        function religionG(){
+            let l = response["People and Society"]["Religions"].text.replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, "").replace(/[0-9]/g, '').replace(/[.]/g, '').replace(/[%]/g, '').split(',');
+            let d = response["People and Society"]["Religions"].text.replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, "").replace(/[a-z]/g, '').replace(/[A-Z]/g, '').replace(/[%]/g, '').replace(/[']/g, '').replace(/[/]/g, '').split(',');
+        
+            new Chart(ctx2, {
+                type: 'doughnut',
+                data: {
+                    labels: l,
+                    datasets: [
+                    {
+                        label: "Religions",
+                        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                        data: d,
+                    }
+                    ]
+                },
+                options: {
+                    title: {
+                    display: true,
+                    text: 'Religions'
+                    }
+                }
+            });
+        }   
+        religionG();
+
+        function GDPConsumptionG(){
+            let d = [];
+            d.push(response["Economy"]["GDP - composition, by end use"]["household consumption"].text.replace(/[%]/g, '').replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, ""));
+            d.push(response["Economy"]["GDP - composition, by end use"]["government consumption"].text.replace(/[%]/g, '').replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, ""));
+            d.push(response["Economy"]["GDP - composition, by end use"]["investment in fixed capital"].text.replace(/[%]/g, '').replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, ""));
+            d.push(response["Economy"]["GDP - composition, by end use"]["investment in inventories"].text.replace(/[%]/g, '').replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, ""));
+            d.push(response["Economy"]["GDP - composition, by end use"]["exports of goods and services"].text.replace(/[%]/g, '').replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, ""));
+            d.push(response["Economy"]["GDP - composition, by end use"]["imports of goods and services"].text.replace(/[%]/g, '').replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, ""));
+
+            new Chart(ctx3, {
+                type: 'bar',
+                data: {
+                labels: ["Household Consumption %", "Government Consumption %", "Investment in Fixed Capital %", "Investment in Inventories %", "Exports %", "Imports %"],
                 datasets: [
-                  {
-                    label: "Population (millions)",
+                    {
+                    label: "GDP: End-Use",
                     backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-                    data: [age14.join(""),age24.join(""),age54.join(""),age64.join(""),age65.join("")]
-                  }
+                    data: d,
+                    }
                 ]
-              },
-            options: {
+                },
+                options: {
+                legend: { display: false },
                 title: {
-                  display: true,
-                  text: 'Age Structure'
+                    display: true,
+                    text: 'GDP: End-Use'
+                }
+                }
+            });
+        }
+        GDPConsumptionG();
+
+        function GDPOriginG(){
+            let d = [];
+            d.push(response["Economy"]["GDP - composition, by sector of origin"]["agriculture"].text.replace(/ *\([^)(]*\) */g, "").replace(/[%]/g, '').replace(/ *\([^)]*\) */g, "").replace(/[+]/g, '').replace(/[-]/g, ''));
+            d.push(response["Economy"]["GDP - composition, by sector of origin"]["industry"].text.replace(/ *\([^)(]*\) */g, "").replace(/[%]/g, '').replace(/ *\([^)]*\) */g, "").replace(/[+]/g, '').replace(/[-]/g, ''));
+            d.push(response["Economy"]["GDP - composition, by sector of origin"]["services"].text.replace(/ *\([^)(]*\) */g, "").replace(/[%]/g, '').replace(/ *\([^)]*\) */g, "").replace(/[+]/g, '').replace(/[-]/g, ''));
+            new Chart(ctx4, {
+                type: 'doughnut',
+                data: {
+                    labels: ["agriculture", "industry", "services"],
+                    datasets: [
+                    {
+                        label: "GDP: by Origin",
+                        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                        data: d,
+                    }
+                    ]
+                },
+                options: {
+                    title: {
+                    display: true,
+                    text: 'GDP: by Origin'
+                    }
+                }
+            });
+        }
+        GDPOriginG();
+       
+        function laborForceG(){        
+            var economy = response["Economy"]["Labor force - by occupation"];
+
+            let d = [];
+            for(e in economy){
+                if (e != "note"){
+                    d.push(response["Economy"]["Labor force - by occupation"][e].text.replace(/[%]/g, '').replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, ""));
                 }
             }
-        });
+            let l = [];
+            for(e in economy){
+                if (e != "note"){
+                    l.push(e)
+                }
+            }
+            console.log(d);
+            console.log(l);
+            new Chart(ctx5, {
+                type: 'doughnut',
+                data: {
+                    labels: l,
+                    datasets: [
+                    {
+                        label: "Labor Force",
+                        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                        data: d,
+                    }
+                    ]
+                },
+                options: {
+                    title: {
+                    display: true,
+                    text: 'Labor Force'
+                    }
+                }
+            });
+        }
+        laborForceG();
 
+        function ethnicityG(){
+            let l = response["People and Society"]["Ethnic groups"].text.replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, "").replace(/[0-9]/g, '').replace(/[.]/g, '').replace(/[%]/g, '').split(',');
+            let d = response["People and Society"]["Ethnic groups"].text.replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, "").replace(/[a-z]/g, '').replace(/[A-Z]/g, '').replace(/[%]/g, '').replace(/[']/g, '').replace(/[/]/g, '').split(',');
+        
+            new Chart(ctx6, {
+                type: 'doughnut',
+                data: {
+                    labels: l,
+                    datasets: [
+                    {
+                        label: "Ethnicities",
+                        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                        data: d,
+                    }
+                    ]
+                },
+                options: {
+                    title: {
+                    display: true,
+                    text: 'Ethnicities'
+                    }
+                }
+            });
+        }   
+        ethnicityG();
+
+        function languagesG(){
+            let l = response["People and Society"]["Languages"].text.replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, "").replace(/[0-9]/g, '').replace(/[.]/g, '').replace(/[%]/g, '').split(',');
+            let d = response["People and Society"]["Languages"].text.replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, "").replace(/[a-z]/g, '').replace(/[A-Z]/g, '').replace(/[%]/g, '').replace(/[']/g, '').replace(/[/]/g, '').split(',');
+            new Chart(ctx7, {
+                type: 'doughnut',
+                data: {
+                    labels: l,
+                    datasets: [
+                    {
+                        label: "Languages",
+                        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                        data: d,
+                    }
+                    ]
+                },
+                options: {
+                    title: {
+                    display: true,
+                    text: 'Languages'
+                    }
+                }
+            });
+        }
+        languagesG();
+
+        function urbanizationG(){
+            let l = ["Urbanization"];
+            let d = [];
+            d.push(response["People and Society"]["Urbanization"]["urban population"].text.replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, "").replace(/[a-z]/g, '').replace(/[A-Z]/g, '').replace(/[%]/g, '').replace(/[']/g, '').replace(/[/]/g, ''));
+            d.push(100-d[0]);
+            new Chart(ctx8, {
+                type: 'doughnut',
+                data: {
+                    labels: l,
+                    datasets: [
+                    {
+                        label: "Urbanization",
+                        backgroundColor: ["#3e95cd"],
+                        data: d,
+                    }
+                    ]
+                },
+                options: {
+                    title: {
+                    display: true,
+                    text: 'Urbanization'
+                    }
+                }
+            });
+        }
+        urbanizationG();
+
+        function MFLifeG(){
+            let d = [];
+            d.push(response["People and Society"]["Life expectancy at birth"]["total population"].text.replace(/ *\([^)(]*\) */g, "").replace(/[%]/g, '').replace(/ *\([^)]*\) */g, "").replace(/[+]/g, '').replace(/[-]/g, '').replace(/[a-z]/g, '').replace(/[A-Z]/g, ''));
+            d.push(response["People and Society"]["Life expectancy at birth"]["male"].text.replace(/ *\([^)(]*\) */g, "").replace(/[%]/g, '').replace(/ *\([^)]*\) */g, "").replace(/[+]/g, '').replace(/[-]/g, '').replace(/[a-z]/g, '').replace(/[A-Z]/g, ''));
+            d.push(response["People and Society"]["Life expectancy at birth"]["female"].text.replace(/ *\([^)(]*\) */g, "").replace(/[%]/g, '').replace(/ *\([^)]*\) */g, "").replace(/[+]/g, '').replace(/[-]/g, '').replace(/[a-z]/g, '').replace(/[A-Z]/g, ''));
+            new Chart(ctx9, {
+                type: 'bar',
+                data: {
+                    labels: ["total population", "male", "female"],
+                    datasets: [
+                    {
+                        label: "Life expectancy at birth",
+                        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                        data: d,
+                    }
+                    ]
+                },
+                options: {
+                    title: {
+                    display: true,
+                    text: 'Life expectancy at birth'
+                    }
+                }
+            });
+        }
+        MFLifeG();
     }
     function updateUIError(){
     }
