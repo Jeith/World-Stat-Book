@@ -2,7 +2,7 @@
 
 body{
     font-family: 'Arimo', Helvetica, Arial, sans-serif;
-    background-color: white;
+    background-color: #f4eade;
 }
 
 header{
@@ -34,7 +34,7 @@ header{
     width: 100%;
     height: 35px;
     font-family: inherit;
-    box-shadow: 0px 2px 5px 2px #888;; inset, 0 0 20px 2px black;
+    box-shadow: 0px 2px 5px 2px #888, inset, 0 0 20px 2px black;
 }
 
 #searchbutton{
@@ -54,21 +54,104 @@ header{
 .earth{
     width: 400px;
     height: 400px;
-    /* background-image: url('https://media.treehugger.com/assets/images/2013/06/1.jpg');
-     */
     background-image: url('http://www.gotosee.tv/gotosee/motionselector/motion/Three.js/images/earth-outline-shifted-gray.png');
     position: absolute;
     top: 400px;
     bottom: 0;
     left: 0;
     right: 0;
-    /* margin: auto; will center */
     margin: auto; 
     border-radius: 50%;
     background-size: cover;
     background-repeat: repeat-x;
     box-shadow: -20px -20px 50px 2px #222 inset, 0 0 20px 2px black;
     animation: spin 40s linear infinite;
+}
+
+.backgroundHeader{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.backgroundSearch{
+    margin-top: 6px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-right: 25px;
+}
+
+#bgsearchbar{    
+    height: 32px;
+    font-size: 10px;
+    width: 220px;
+}
+
+#bgsearchbutton{
+    height: 32px;
+    width: 50px;
+    color: white;
+    background-color: #2196F3;
+    border: none;
+    font-size: 10px;
+}
+
+.sidebar{
+    position: fixed;
+    left: 0px;
+    display: flex;
+    top: 80px;
+    flex-direction: column;
+    width: 125px;
+    background-color: #7eaba4;
+    border-top-right-radius: 5%;
+    border-bottom-right-radius: 5%;
+    border: 1px solid #f4eade;
+    justify-content: space-around;
+    height: 500px;
+
+}
+
+.sideButton{
+    font-size: 20px;
+    border-radius: 100%;
+    width: 100%;
+    height: 40px;
+    height: 130px;
+}
+.content{
+    margin-left: 15%;
+    margin-right: 10%;
+    margin-top: 50px;
+}
+.content h2{
+    font-size: 50px;
+    color: #2e4874;
+}
+.content p{
+    margin-top: 25px;
+    font-size: 20px;
+    font-family: inherit;
+    color: #2e4874;
+}
+
+.wrapper {
+    display: flex;
+    width: 100%;
+}
+
+#sidebar {
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 999;
+    background: #7386D5;
+    color: #fff;
+    transition: all 0.3s;
 }
 
 @media (max-width: 900px) {
@@ -85,16 +168,12 @@ header{
         border-radius: 50%;
         background-size: cover;
         background-repeat: repeat-x;
-        box-shadow: -20px -20px 50px 2px #222; inset, 0 0 20px 2px black;
+        box-shadow: -20px -20px 50px 2px #222 inset, 0 0 20px 2px black;
         animation: spin 40s linear infinite;
     }
 }
 
 @keyframes spin{
-    /* 100%{
-        background-position: 100%;
-    } */
-
     from{
         background-position: 0 0;
     }
