@@ -1,5 +1,48 @@
 
 (function() {
+    ////////
+    var $geography = document.getElementById("geography");
+    var $PeopleAndSociety = document.getElementById("peopleAndSociety");
+    var $Government = document.getElementById("government");
+    var $Economy = document.getElementById("economy");
+    var $geographyContent = document.getElementById("contentGE");
+    var $PeopleAndSocietyContent = document.getElementById("contentPS");
+    var $GovernmentContent = document.getElementById("contentGO");
+    var $EconomyContent = document.getElementById("contentEC");
+    var $content = document.getElementById("contentBG")
+    
+    $geography.onclick = function(){
+        $geographyContent.setAttribute("style", "visibility: visible");
+        $PeopleAndSocietyContent.setAttribute("style", "visibility: hidden");
+        $GovernmentContent.setAttribute("style", "visibility: hidden");
+        $EconomyContent.setAttribute("style", "visibility: hidden");
+        $content.setAttribute("style", "visibility: hidden");
+    }
+    
+    $PeopleAndSociety.onclick = function(){
+        $geographyContent.setAttribute("style", "visibility: hidden");
+        $PeopleAndSocietyContent.setAttribute("style", "visibility: visible");
+        $GovernmentContent.setAttribute("style", "visibility: hidden");
+        $EconomyContent.setAttribute("style", "visibility: hidden");
+        $content.setAttribute("style", "visibility: hidden");  
+    }
+    
+    $Government.onclick = function(){
+        $geographyContent.setAttribute("style", "visibility: hidden");
+        $PeopleAndSocietyContent.setAttribute("style", "visibility: hidden");
+        $GovernmentContent.setAttribute("style", "visibility: visible");
+        $EconomyContent.setAttribute("style", "visibility: hidden");
+        $content.setAttribute("style", "visibility: hidden");
+    }
+    
+    $Economy.onclick = function(){
+        $geographyContent.setAttribute("style", "visibility: hidden");
+        $PeopleAndSocietyContent.setAttribute("style", "visibility: hidden");
+        $GovernmentContent.setAttribute("style", "visibility: hidden");
+        $EconomyContent.setAttribute("style", "visibility: visible");
+        $content.setAttribute("style", "visibility: hidden");
+    }
+////////
     var $searchbutton = $('#searchbutton');
     $searchbutton.click( function(e) {
         var $searchbar = $('#searchbar')
@@ -765,7 +808,7 @@
                 break;
         }
         var url = 'https://raw.githubusercontent.com/Jeith/worldfactbookapi/master/countries/' + cc + ".json";
-    
+
     $.get(url)
     .done(function(response) {
         
@@ -783,9 +826,19 @@
 
     function updateUISuccess(response){
         console.log(response);
+
+        ///
+
+        $geographyContent.setAttribute("style", "visibility: hidden");
+        $PeopleAndSocietyContent.setAttribute("style", "visibility: hidden");
+        $GovernmentContent.setAttribute("style", "visibility: hidden");
+        $EconomyContent.setAttribute("style", "visibility: hidden;");
+        $content.setAttribute("style", "visibility: visible");
+
+        ///
+
         var intro = response.Geography.Location.text;
-        var head = document.getElementById('head');
-        head.innerHTML = "<h4>" + intro + "</h4>";
+
 
         var ctx1 = document.getElementById("chart1");
         var ctx2 = document.getElementById("chart2");
@@ -863,7 +916,7 @@
             new Chart(ctx3, {
                 type: 'bar',
                 data: {
-                labels: ["Household Consumption %", "Government Consumption %", "Investment in Fixed Capital %", "Investment in Inventories %", "Exports %", "Imports %"],
+                labels: ["Household%", "Government%", "Fixed Capital %", "Inventories %", "Exports %", "Imports %"],
                 datasets: [
                     {
                     label: "GDP: End-Use",

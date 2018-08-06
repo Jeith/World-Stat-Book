@@ -1,101 +1,64 @@
-<!doctype html>
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<title>Line Chart Multiple Axes</title>
-	<script src="../../../dist/Chart.bundle.js"></script>
-	<script src="../../utils.js"></script>
-	<style>
-	canvas {
-		-moz-user-select: none;
-		-webkit-user-select: none;
-		-ms-user-select: none;
-	}
-	</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Map Testing</title>
+    <style>
+            /* Always set the map height explicitly to define the size of the div
+             * element that contains the map. */
+            #map {
+              height: 500px;
+            }
+            /* Optional: Makes the sample page fill the window. */
+            /* html, body {
+              height: 100%;
+              margin: 0;
+              padding: 0;
+            } */
+          </style>
 </head>
-
 <body>
-	<div style="width:75%;">
-		<canvas id="canvas"></canvas>
-	</div>
-	<button id="randomizeData">Randomize Data</button>
-	<script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <div id="head"></div>
+    <div class="search">
+        <input type="text" placeholder="Search..." id="searchbar">
+        <button type="submit" id='searchbutton'>🔎</button>
+    </div>
+    <div class=row>
+            <div class="col-sm-5">
+                <canvas id="chart1" width="400px" height="400px"></canvas>
+            </div>
+            <div class="col-sm-5">
+                <canvas id="chart2" width="400px" height="400px"></canvas>
+            </div>
+    </div>
+
+        <div id="map"></div>
+        <script>
+        //   var map;
+        //   function initMap() {
+        //     map = new google.maps.Map(document.getElementById('map'), {
+        //       center: {lat: 45.25, lng: -75.42},
+        //       zoom: 8
+        //     });
+        //   }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEMIiWlcnrHkPZPr6Z2dVoxFYyKmu1cCk&callback=initMap"
+        async defer></script>
+
+        
+        <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
 
 
-		var lineChartData = {
-			labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-			datasets: [{
-				label: 'My First dataset',
-				borderColor: window.chartColors.red,
-				backgroundColor: window.chartColors.red,
-				fill: false,
-				data: [
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor()
-				],
-				yAxisID: 'y-axis-1',
-			}, {
-				label: 'My Second dataset',
-				borderColor: window.chartColors.blue,
-				backgroundColor: window.chartColors.blue,
-				fill: false,
-				data: [
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor()
-				],
-				yAxisID: 'y-axis-2'
-			}]
-		};
-		window.onload = function() {
-			var ctx = document.getElementById('canvas').getContext('2d');
-			window.myLine = Chart.Line(ctx, {
-				data: lineChartData,
-				options: {
-					responsive: true,
-					hoverMode: 'index',
-					stacked: false,
-					title: {
-						display: true,
-						text: 'Chart.js Line Chart - Multi Axis'
-					},
-					scales: {
-						yAxes: [{
-							type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-							display: true,
-							position: 'left',
-							id: 'y-axis-1',
-						}, {
-							type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-							display: true,
-							position: 'right',
-							id: 'y-axis-2',
-							// grid line settings
-							gridLines: {
-								drawOnChartArea: false, // only want the grid lines for one axis to show up
-							},
-						}],
-					}
-				}
-			});
-		};
-		document.getElementById('randomizeData').addEventListener('click', function() {
-			lineChartData.datasets.forEach(function(dataset) {
-				dataset.data = dataset.data.map(function() {
-					return randomScalingFactor();
-				});
-			});
-			window.myLine.update();
-		});
-	</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script src='try.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+  
+
+    
 </body>
+</html>
