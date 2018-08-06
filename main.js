@@ -387,7 +387,7 @@
             cc = "kg";
                 break;
             case "north korea":
-            case "drnk":
+            case "dprk":
             cc = "kn";
                 break;
             case "kiribati":
@@ -747,6 +747,7 @@
             cc = "vq";
                 break;
             case "vatican city":
+            case "the vatican":
             cc = "vt";
                 break;
             case "namibia":
@@ -769,6 +770,7 @@
             cc = "ws";
                 break;
             case "swaziland":
+            case "eswatini":
             cc = "wz";
                 break;
             case "yemen":
@@ -1651,7 +1653,145 @@ function loadPage(){
 
     function updateUISuccess(response){
 
-        var intro = response.Geography.Location.text;
+
+        // Google map
+        var location = response.Government.Capital["geographic coordinates"].text;
+        console.log(location);
+        location = location.replace(",", "");
+        var location1 = location.split(" ");
+        
+        var customLocation = [];
+
+        location1.forEach(function(e){ 
+            if(e == "S" || e == "W"){ 
+                customLocation.push("-");
+            } else if(e == "N" || e == "E"){ 
+                customLocation.push("");
+            } else{ 
+                customLocation.push(e); 
+            } 
+        });
+        var latitude = customLocation[2] + customLocation[0] + "." + customLocation[1];
+        var longitude = customLocation[5] + customLocation[3] + "." + customLocation[4];
+        
+        var lat = parseFloat(latitude);
+        var long = parseFloat(longitude);
+
+        
+        var map;
+        //   function initMap() {
+            map = new google.maps.Map(document.getElementById('googleMap'), {
+                
+            //   center: {lat: 45.25, lng: -75.42},
+                center: {lat: lat, lng: long},
+                zoom: 8
+            });
+
+        //  //  LINE INFO  //  //
+        //Geography
+        var $climate = document.getElementById("climate");
+        var $terrain = document.getElementById("terrain");
+        var $elevation = document.getElementById("elevation");
+        var $naturalHazzards = document.getElementById("naturalHazzards");
+        var $area = document.getElementById("area");
+        var $areaComparison = document.getElementById("areaComparison");
+        var $MUA = document.getElementById("MUA");
+
+        let arrMUA = response["People and Society"]["Major urban areas - population"].text.replace(/ *\([^)(]*\) */g, " ").replace(/ *\([^)]*\) */g, "").split(';');
+        for(i = 0; i < arrMUA.length; i++){
+            let city = document.createElement("li");
+            city.textContent = arrMUA[i];
+            $MUA.appendChild(city);
+        }
+        $climate.textContent = response["Geography"]["Climate"].text;
+        $terrain.textContent = response["Geography"]["Terrain"].text;
+        $elevation.textContent = response["Geography"]["Elevation"]["elevation extremes"].text;
+        $naturalHazzards.textContent = response["Geography"]["Natural hazards"].text;
+        $area.textContent = response["Geography"]["Area"]["total"].text;
+        $areaComparison.textContent = response["Geography"]["Area - comparative"].text;
+
+       //Government 
+        var $entemology = document.getElementById("entemology");
+        var $governmentType = document.getElementById("governmentType");
+        var $adminDivision = document.getElementById("adminDivision");
+        var $independence = document.getElementById("independence");    
+        var $legalSystem = document.getElementById("legalSystem");
+        var $nationalAnthem = document.getElementById("nationalAnthem");
+
+        if(typeof response["Government"]["Country name"]["etymology"] !== 'undefined' && typeof response["Government"]["Country name"]["etymology"].title !== 'undefined'){
+            $entemology.textContent = response["Government"]["Country name"]["etymology"].text;
+        }
+        $governmentType.textContent = response["Government"]["Government type"].text;
+        $adminDivision.textContent = response["Government"]["Administrative divisions"].text;
+        $independence.textContent = response["Government"]["Independence"].text;
+        $legalSystem.textContent = response["Government"]["Legal system"].text;
+        $nationalAnthem.textContent = response["Government"]["National anthem"]["name"].text + ": " + response["Government"]["National anthem"]["lyrics/music"].text;
+
+        //Economy
+
+
+        var $unemployment = document.getElementById("unemployment");
+        var $povertyLine = document.getElementById("povertyLine");
+        var $gini = document.getElementById("gini");
+        var $inflation = document.getElementById("inflation");  
+        console.log(response["Economy"]["Unemployment rate"].text);
+        $unemployment.textContent = response["Economy"]["Unemployment rate"].text.replace(/ *\([^)(]*\) */g, " ").replace(/ *\([^)]*\) */g, "").replace(/[++]/g, '-');
+        $povertyLine.textContent = response["Economy"]["Population below poverty line"].text.replace(/ *\([^)(]*\) */g, " ").replace(/ *\([^)]*\) */g, "").replace(/[++]/g, '-');
+        if(typeof response["Economy"]["Distribution of family income - Gini index"] !== 'undefined' && typeof response["Economy"]["Distribution of family income - Gini index"].title !== 'undefined'){
+            $gini.textContent = response["Economy"]["Distribution of family income - Gini index"].text.replace(/ *\([^)(]*\) */g, " ").replace(/ *\([^)]*\) */g, "").replace(/[++]/g, '-');
+        }
+        $inflation.textContent = response["Economy"]["Inflation rate (consumer prices)"].text.replace(/ *\([^)(]*\) */g, " ").replace(/ *\([^)]*\) */g, "").replace(/[++]/g, '-');
+        
+        var $AP = document.getElementById("agProduction");
+
+        let arrAP = response["Economy"]["Agriculture - products"].text.replace(/ *\([^)(]*\) */g, " ").replace(/ *\([^)]*\) */g, "").split(';').join(',').split(',');
+        for(i = 0; i < arrAP.length; i++){
+            let agricultureP = document.createElement("li");
+            agricultureP.textContent = arrAP[i];
+            $AP.appendChild(agricultureP);
+        }
+        
+        var $IP = document.getElementById("indProduction");
+
+        let arrIP = response["Economy"]["Industries"].text.replace(/ *\([^)(]*\) */g, " ").replace(/ *\([^)]*\) */g, "").split(';').join(',').split(',');
+        for(i = 0; i < arrIP.length; i++){
+            let industrialP = document.createElement("li");
+            industrialP.textContent = arrIP[i];
+            $IP.appendChild(industrialP);
+        }
+
+        var $EP = document.getElementById("exports");
+        index = response["Economy"]["Exports"].text.indexOf("+");
+        if (index > 0){}
+        input = response["Economy"]["Exports"].text.substring(0, index);
+        $EP.textContent = "Exports: (" + input.replace(/ *\([^)(]*\) */g, " ").replace(/ *\([^)]*\) */g, "").replace(/ *\([^)]*\) */g, "") + ")";
+
+        let arrEP = response["Economy"]["Exports - commodities"].text.replace(/ *\([^)(]*\) */g, " ").replace(/ *\([^)]*\) */g, "").split(';').join(',').split(',');
+        for(i = 0; i < arrEP.length; i++){
+            let exportsC = document.createElement("li");
+            exportsC.textContent = arrEP[i];
+            $EP.appendChild(exportsC);
+        }
+
+        var $ImP = document.getElementById("imports");
+        index = response["Economy"]["Imports"].text.indexOf("+");
+        if (index > 0){}
+        input = response["Economy"]["Imports"].text.substring(0, index);
+        $ImP.textContent = "Imports: (" + input.replace(/ *\([^)(]*\) */g, " ").replace(/ *\([^)]*\) */g, "").replace(/ *\([^)]*\) */g, "") + ")";
+
+        let arrImP = response["Economy"]["Imports - commodities"].text.replace(/ *\([^)(]*\) */g, " ").replace(/ *\([^)]*\) */g, "").split(';').join(',').split(',');
+        for(i = 0; i < arrImP.length; i++){
+            let importsC = document.createElement("li");
+            importsC.textContent = arrImP[i];
+            $ImP.appendChild(importsC);
+        }
+
+        var countryName = document.getElementsByClassName("countryName");
+        var countryDesc = document.getElementById("countryDesc");
+        for ( var i=0; i < countryName.length; ++i ){
+            countryName[i].innerHTML = properCountry;
+        }
+        countryDesc.innerHTML = response["Introduction"]["Background"].text
 
         var ctx1 = document.getElementById("chart1");
         var ctx2 = document.getElementById("chart2");
@@ -1702,7 +1842,7 @@ function loadPage(){
                     datasets: [
                     {
                         label: "Religions",
-                        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850", "#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850", "#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#e8c3b9","#c45850", "#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850", "#3e95cd", "#8e5ea2"],
                         data: d,
                     }
                     ]
@@ -1920,7 +2060,7 @@ function loadPage(){
                 }
                 MFLifeG();
 
-                var $geography = document.getElementById("geography");
+    var $geography = document.getElementById("geography");
     var $PeopleAndSociety = document.getElementById("peopleAndSociety");
     var $Government = document.getElementById("government");
     var $Economy = document.getElementById("economy");
@@ -1967,7 +2107,7 @@ function loadPage(){
     $GovernmentContent.setAttribute("style", "visibility: hidden");
     $EconomyContent.setAttribute("style", "visibility: hidden;");
     $content.setAttribute("style", "visibility: visible");
-    
+
     function updateUIError(){
     }  
     }}
