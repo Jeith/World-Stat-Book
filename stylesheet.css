@@ -1,0 +1,247 @@
+header{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid black;
+    background-color: #7eaba4
+}
+h1{
+    margin-left: 4%;
+    font-size: 100px;
+    color:	#343635
+}
+#searchbar{
+    height: 25px;
+    width: 85%;
+}
+#searchbutton{
+    height: 35px;
+}
+.search{
+    margin-right: 5%;
+    width: 20%;
+    display: flex;
+}
+.sidebar{
+    position: fixed;
+    left: 0px;
+    display: flex;
+    top: 150px;
+    flex-direction: column;
+    width: 10%;
+    background-color: #7eaba4;
+    border-top-right-radius: 5%;
+    border-bottom-right-radius: 5%;
+    border: 1px solid #f4eade;
+    justify-content: space-around;
+    height:600px;
+}
+button{
+    color: #343635;
+    background-color: #347c83;
+    margin-left: 5%;
+}
+.sideButton{
+    /* word-wrap: break-word; */
+    font-size: 1.4vw;
+    border-radius: 100%;
+    width: 90%;
+    height: 80%;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+.content{
+    position: absolute;
+    margin-left: 15%;
+    margin-right: 10%;
+    margin-top: 50px;
+    width: 75%;
+
+}
+h2{
+    font-size: 75px;
+    text-decoration: underline;
+    color: #2e4874;
+}
+p{
+    font-size:35px;
+    color: #2e4874;
+}
+body{
+    background-color: #f4eade;
+}
+
+.dg select {
+    width: auto;
+    height: auto;
+    border: none;
+    color: #000;
+    font: 11px 'Lucida Grande', sans-serif;
+}
+.dg input {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    border-radius: 0;
+    font: 11px 'Lucida Grande', sans-serif;
+}
+#k-proj-title {
+    text-align: center;
+}
+#contentGE, #contentPS, #contentGO, #contentEC{
+    /* display: flex;
+    flex-direction: column; */
+    visibility: hidden;
+}
+#contentGE{
+    z-index: 1;
+}
+#contentPS{
+    z-index: 2;
+}
+#contentGO{
+    z-index: 3;
+}
+#contentEC{
+    z-index: 4;
+}
+#contentBG{
+    z-index: 5;
+}
+#hidebox{
+    
+
+}
+.rows{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.half{
+    width:47%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.midline{
+    background-color: #000;
+    width: .5%;
+}
+.head{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+.label{
+    font-size: 50px;
+}
+#googleMap{
+    width: 98%;
+    height: 300px;
+    background-color: aliceblue;
+}
+
+#rowP{
+    display: flex;
+    justify-content: center;
+}
+
+.rowC{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 100px;
+    border: 1px solid black;
+}
+#flag{
+    width: 98%;
+    height: 300px;
+    background-color: aliceblue;
+}
+@media(max-width: 1020px){
+    h1{
+        font-size: 50px;
+    }
+    body{
+        display: flex;
+        flex-direction: column;
+    }
+    .sidebar{
+        flex-direction: row;
+        position: relative;
+        width: 100%;
+        top: 0px;
+        background-color: #f4eade;
+        height: 100px;
+    }
+    .sideButton{
+        width: 25%;
+        border-radius: 5%;
+        font-size: 4vw;
+        padding:0px;
+        margin:0px;
+    }
+    .midline{
+        width:0px;
+    }
+    .rows{
+        flex-direction: column;
+        width: 100%;
+    }
+    .rowC{
+        height: 400px;
+        flex-direction: column;
+    }
+    .half{
+        width: 100%;
+        margin-bottom: 30px;
+    }
+    .head{
+        flex-direction: column;
+        border-bottom:2px dashed black;
+        margin-bottom: 35px;
+        padding-bottom: -25px;
+    }
+    h2{
+        margin-bottom:-30px;
+    }
+}
+@media(max-width: 550px){
+    h1{
+        font-size: 35px;
+    }
+}
+@media(max-width: 450px){
+    p{
+        font-size: 20px;
+    }
+    h2{
+        font-size: 40px;
+    }
+    .label{
+        font-size: 30px;
+    }
+    .sidebar{
+        flex-direction: column;
+    }
+    .sideButton{
+        border-radius: 0px;
+        width: 100%;
+    }
+    header{
+        flex-direction: column;
+        height: 150px;
+        justify-content: space-around;
+    }
+    #searchbar{
+        width: 100%;
+        margin-left: 3%;
+    }
+    .search{
+        width: 80%;
+    }
+}

@@ -1,68 +1,242 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Factbook App</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body onload="loadPage()">
-        <header>
-            World Graphics
-        </header>
-        <div class="contain">
-        <h3 id="countryName"></h3>
-        <p id="countryDesc"></p>
-        <h4>Population: <span id="population"></span></h4>
-        <div class="row">
-            <div class="col-md-5 col-12">
-                <canvas id="chart1" width="400px" height="400px"></canvas>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body onload="loadPage()">
+    <header>
+        <h1>World FactBook</h1>
+        <div class="search">
+            <input type="text" placeholder="Search..." id="searchbar">
+            <button type="submit" id='searchbutton'>🔎</button>
+        </div>
+    </header>
+    <div class = "sidebar">
+        <button class = "sideButton" id = "geography">Geography</button>
+        <button class = "sideButton" id = "peopleAndSociety">People and Society</button>
+        <button class = "sideButton" id = "government">Government</button>
+        <button class = "sideButton" id = "economy">Economy</button>
+    </div>
+    <div id="hidebox">
+        <div id = "contentBG" class ="content">
+            <h2>Country Name</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+
+        <div id="contentGE" class ="content">
+            <div class ="head">
+                <h2>Country Name</h2>
+                <p class = "label">-  Geography</p>
             </div>
-            <div class="col-md-5 col-12">
-                <canvas id="chart2" width="400px" height="400px"></canvas>
+            <div class = "rows">
+                <div class= "half">
+                    <div>
+                        <p>Climate: </p>
+                        <p id="climate"></p>
+                    </div>
+                    <div>
+                        <p>Terrain: </p>
+                        <p id= "terrain"></p>
+                    </div>
+                    <div>
+                        <p>Elevation Extremes: </p>
+                        <p id="elevation"></p>
+                    </div>
+                    <div>
+                        <p>Natural Hazzards: </p>
+                        <p id= "naturalHazzards"></p>
+                    </div>
+                    <div>
+                        <ul>Major Urban Areas: </ul>
+                    </div>
+                </div>
+                <div class = "midline">
+                    
+                </div>
+                <div class = "half">
+                    <div id = "googleMap">
+                        Google Map
+                    </div>
+                    <div>
+                        <p>Area: </p>
+                        <p id="area"></p>
+                    </div>
+                    <div>
+                        <p>Area Comparison: </p>
+                        <p id= "areaComparison"></p>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class-"col-md-5 col-12">
-                <canvas id="chart3" width="400px" height="400px"></canvas>
+
+        <div id="contentPS" class ="content">
+            <div class ="head">
+                <h2>Country Name</h2>
+                <p class = "label">-  People and Society</p>
             </div>
-            <div class="col-md-5 col-12">
-                <canvas id="chart4" width="400px" height="400px"></canvas>
+            <div id = "rowP">
+                <p class= "populationLabel">Population: </p>
+                <p id = "population"> </p>
+            </div>
+            <div class = "rows">
+                <div class= "half">
+                        <canvas id="chart1" width="400px" height="400px"></canvas>
+                </div>
+                <div class = "midline"></div>
+                <div class = "half">
+                        <canvas id="chart2" width="400px" height="400px"></canvas>
+                </div>
+            </div>
+            <div class = "rows">
+                <div class= "half">
+                        <canvas id="chart6" width="400px" height="400px"></canvas>
+                </div>
+                <div class = "midline"></div>
+                <div class = "half">
+                        <canvas id="chart7" width="400px" height="400px"></canvas>
+                </div>
+            </div>
+            <div class = "rows">
+                <div class= "half">
+                        <canvas id="chart8" width="400px" height="400px"></canvas>
+                </div>
+                <div class = "midline"></div>
+                <div class = "half">
+                        <canvas id="chart9" width="400px" height="400px"></canvas>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class-"col-md-5 col-12">
-                <canvas id="chart5" width="400px" height="400px"></canvas>
+
+        <div id="contentGO" class ="content">
+            <div class ="head">
+                <h2>Country Name</h2>
+                <p class = "label">-  Government</p>
             </div>
-            <div class="col-md-5 col-12">
-                <canvas id="chart6" width="400px" height="400px"></canvas>
+            <div id = "rowP">
+                <p class= "entemologyLabel">Entemology: </p>
+                <p id = "entemology"> </p>
+            </div>
+            <div class = "rows">
+                <div class= "half">
+                    <div>
+                        <p>Government Type: </p>
+                        <p id="governmentType"></p>
+                    </div>
+                    <div>
+                        <p>Admin Division: </p>
+                        <p id= "adminDivision"></p>
+                    </div>
+                    <div>
+                        <p>Independence: </p>
+                        <p id="independence"></p>
+                    </div>
+                    <div>
+                        <p>Legal System: </p>
+                        <p id= "legalSystem"></p>
+                    </div>
+                </div>
+                <div class = "midline"></div>
+                <div class = "half">
+                    <div id = "flag">
+                        Flag
+                    </div>
+                    <div>
+                        <p>National Anthem: </p>
+                        <p id="nationalAnthem"></p>
+                    </div>
+                </div>
+            </div>
+            <div class = "rowC">
+                <div>
+                    <p>By Birth: </p>
+                    <p id="birth"></p>
+                </div>
+                <div>
+                    <p>By Decent: </p>
+                    <p id= "decent"></p>
+                </div>
+                <div>
+                    <p>Dual: </p>
+                    <p id="dual"></p>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class-"col-md-5 col-12">
-                <canvas id="chart7" width="400px" height="400px"></canvas>
+
+        <div id="contentEC" class ="content">
+            <div class ="head">
+                <h2>Country Name</h2>
+                <p class = "label">-  Economy</p>
             </div>
-            <div class="col-md-5 col-12">
-                <canvas id="chart8" width="400px" height="400px"></canvas>
+
+            <div class = "rows">
+                <div class= "half">
+                    <div>
+                        <p>Official Exchange Rate: </p>
+                        <p id="exchangeRate"></p>
+                    </div>
+                    <canvas id="chart3" width="400px" height="400px"></canvas>
+                </div>
+                    <div class = "midline"></div>
+                <div class = "half">
+                    <div>
+                        <p>Real Growth Rate: </p>
+                        <p id="growth rate"></p>
+                    </div>
+                    <canvas id="chart4" width="400px" height="400px"></canvas>
+                </div>
+            </div>
+
+            <div class = "rows">
+                <div class= "half">
+                    <ul id = "agProduction">Agricultural Production</ul>
+                </div>
+                <div class = "midline"></div>
+                <div class = "half">
+                    <ul id = "indProduction">Industries</ul>
+                </div>
+            </div>
+
+            <div class = "rows">
+                <div class= "half">
+                    <div>
+                        <p>Unemployment Rate: </p>
+                        <p id="unemployment"></p>
+                    </div>
+                    <div>
+                        <p>Population Below Powerty Line: </p>
+                        <p id= "povertyLine"></p>
+                    </div>
+                    <div>
+                        <p>Gini Index: </p>
+                        <p id="gini"></p>
+                    </div>
+                    <div>
+                        <p>Inflation Rate: </p>
+                        <p id="inflation"></p>
+                    </div>
+                </div>
+                <div class = "midline"></div>
+                <div class = "half">
+                        <canvas id="chart5" width="400px" height="400px"></canvas>
+                </div>
+            </div>
+            <div class = "rows">
+                <div class= "half">
+                    <ul id = "exports">Total Exports: </ul>
+                </div>
+                <div class = "midline"></div>
+                <div class = "half">
+                    <ul id = "imports">Total Imports:</ul>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class-"col-md-5 col-12">
-                <canvas id="chart9" width="400px" height="400px"></canvas>
-            </div>
-            <div class="col-md-5 col-12">
-                <canvas id="chart8" width="400px" height="400px"></canvas>
-            </div>
-        </div>
-        <div class="row">
-            <div class-"col-md-5 col-12">
-                <canvas id="chart9" width="400px" height="400px"></canvas>
-            </div>
-        </div>
-        </div>
-    </body>
+    </div>
+
+
     <script
     src="https://code.jquery.com/jquery-3.3.1.js"
     integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
@@ -71,5 +245,6 @@
     <script src='main.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
-  </body>
+
+</body>
 </html>
