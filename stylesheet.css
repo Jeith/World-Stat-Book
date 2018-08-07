@@ -11,7 +11,7 @@ header{
     justify-content: space-between;
     border-bottom: 2px solid black;
     background-color: #7eaba4
-
+    
 }
 h1{
     margin-left: 4%;
@@ -71,6 +71,14 @@ button{
     margin-top: 0px;
     width: 75%;
 
+}
+a{
+    text-decoration: none;
+    color: #343635;
+}
+
+a:hover{
+    color: whitesmoke;
 }
 .countryName{
     font-size: 50px;
@@ -200,9 +208,6 @@ body{
 }
 #g{
     justify-content: center;
-}
-.eco{
-    text-decoration: underline;
 }
 
 @media(max-width: 1020px){
