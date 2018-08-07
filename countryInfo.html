@@ -10,17 +10,17 @@
 </head>
 <body onload="loadPage()">
     <header>
-        <h1>World FactBook</h1>
+        <h1><a id="title" href="index.html" onclick="clearit()">World FactBook</a></h1>
         <div class="search">
             <input type="text" placeholder="Search..." id="searchbar">
             <button type="submit" id='searchbutton'><i class="fas fa-search"></i></button>
         </div>
     </header>
     <div class = "sidebar">
-        <button class = "sideButton" id = "geography">Geography</button>
-        <button class = "sideButton" id = "peopleAndSociety">People and Society</button>
-        <button class = "sideButton" id = "government">Government</button>
-        <button class = "sideButton" id = "economy">Economy</button>
+        <button class = "sideButton" id = "geography" style = "font-size: 20px;">Geography</button>
+        <button class = "sideButton" id = "peopleAndSociety" style = "font-size: 20px;">People and Society</button>
+        <button class = "sideButton" id = "government" style = "font-size: 20px;">Government</button>
+        <button class = "sideButton" id = "economy" style = "font-size: 20px;">Economy</button>
     </div>
     <div id="hidebox">
         <div id = "contentBG" class ="content">
@@ -35,21 +35,21 @@
                 </div>
                 <div class = "rows">
                     <div class= "half">
-                        <div>
+                        <div class="section">
                             <p>Climate: </p>
-                            <p id="climate"></p>
+                            <p class = "answer" id="climate"></p>
                         </div>
-                        <div>
+                        <div class="section">
                             <p>Terrain: </p>
-                            <p id= "terrain"></p>
+                            <p class = "answer" id= "terrain"></p>
                         </div>
-                        <div>
+                        <div class="section">
                             <p>Elevation Extremes: </p>
-                            <p id="elevation"></p>
+                            <p class = "answer" id="elevation"></p>
                         </div>
-                        <div>
+                        <div class="section">
                             <p>Natural Hazzards: </p>
-                            <p id= "naturalHazzards"></p>
+                            <p class = "answer" id= "naturalHazzards"></p>
                         </div>
                         <div>
                             <ul id = "MUA">Major Urban Areas: </ul>
@@ -58,17 +58,17 @@
                     <div class = "midline">
                         
                     </div>
-                    <div class = "half">
+                    <div class = "half"id="g">
                         <div id = "googleMap">
                             Google Map
                         </div>
-                        <div>
+                        <div class="section">
                             <p>Area: </p>
-                            <p id="area"></p>
+                            <p class = "answer" id="area"></p>
                         </div>
-                        <div>
+                        <div class="section">
                             <p>Area Comparison: </p>
-                            <p id= "areaComparison"></p>
+                            <p class = "answer" id= "areaComparison"></p>
                         </div>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                 </div>
                 <div id = "rowP">
                     <p class= "populationLabel">Population: </p>
-                    <p id = "population"> </p>
+                    <p class = "answer" id = "population"> </p>
                 </div>
                 <div class = "rows">
                     <div class= "half">
@@ -114,55 +114,41 @@
     
             <div id="contentGO" class ="content">
                 <div class ="head">
-                                <h2 class="countryName"></h2>
+                    <h2 class="countryName"></h2>
                     <p class = "label">-  Government</p>
                 </div>
                 <div id = "rowP">
                     <p class= "entemologyLabel">Entemology: </p>
-                    <p id = "entemology"> </p>
+                    <p class = "answer" id = "entemology"> </p>
                 </div>
                 <div class = "rows">
                     <div class= "half">
-                        <div>
+                        <div class="section">
                             <p>Government Type: </p>
-                            <p id="governmentType"></p>
+                            <p class = "answer" id="governmentType"></p>
                         </div>
-                        <div>
+                        <div class="section">
                             <p>Admin Division: </p>
-                            <p id= "adminDivision"></p>
+                            <p class = "answer" id= "adminDivision"></p>
                         </div>
-                        <div>
+                        <div class="section">
                             <p>Independence: </p>
-                            <p id="independence"></p>
+                            <p class = "answer" id="independence"></p>
                         </div>
-                        <div>
+                        <div class="section">
                             <p>Legal System: </p>
-                            <p id= "legalSystem"></p>
+                            <p class = "answer" id= "legalSystem"></p>
                         </div>
                     </div>
                     <div class = "midline"></div>
                     <div class = "half">
-                        <div id = "flag">
-                            Flag
-                        </div>
-                        <div>
+                        <img id = "flag" src = "">
+                            
+                        
+                        <div class="section">
                             <p>National Anthem: </p>
-                            <p id="nationalAnthem"></p>
+                            <p class = "answer" id="nationalAnthem"></p>
                         </div>
-                    </div>
-                </div>
-                <div class = "rowC">
-                    <div>
-                        <p>By Birth: </p>
-                        <p id="birth"></p>
-                    </div>
-                    <div>
-                        <p>By Decent: </p>
-                        <p id= "decent"></p>
-                    </div>
-                    <div>
-                        <p>Dual: </p>
-                        <p id="dual"></p>
                     </div>
                 </div>
             </div>
@@ -173,25 +159,25 @@
                     <p class = "label">-  Economy</p>
                 </div>
     
-                <div class = "rows">
+                <div class = "rows econ">
                     <div class= "half">
-                        <div>
+                        <div class="section">
                             <p>Official Exchange Rate: </p>
-                            <p id="exchangeRate"></p>
+                            <p class = "answer" id="exchangeRate"></p>
                         </div>
                         <canvas id="chart3" width="400px" height="400px"></canvas>
                     </div>
                         <div class = "midline"></div>
                     <div class = "half">
-                        <div>
+                        <div class="section">
                             <p>Real Growth Rate: </p>
-                            <p id="growth rate"></p>
+                            <p class = "answer" id="growth rate"></p>
                         </div>
                         <canvas id="chart4" width="400px" height="400px"></canvas>
                     </div>
                 </div>
     
-                <div class = "rows">
+                <div class = "rows econ">
                     <div class= "half">
                         <ul id = "agProduction">Agricultural Production</ul>
                     </div>
@@ -201,23 +187,23 @@
                     </div>
                 </div>
     
-                <div class = "rows">
+                <div class = "rows econ">
                     <div class= "half">
-                        <div>
+                        <div class="section">
                             <p>Unemployment Rate: </p>
-                            <p id="unemployment"></p>
+                            <p class = "answer" id="unemployment"></p>
                         </div>
-                        <div>
+                        <div class="section">
                             <p>Population Below Powerty Line: </p>
-                            <p id= "povertyLine"></p>
+                            <p class = "answer" id= "povertyLine"></p>
                         </div>
-                        <div>
+                        <div class="section">
                             <p>Gini Index: </p>
-                            <p id="gini"></p>
+                            <p class = "answer" id="gini"></p>
                         </div>
-                        <div>
+                        <div class="section">
                             <p>Inflation Rate: </p>
-                            <p id="inflation"></p>
+                            <p class = "answer" id="inflation"></p>
                         </div>
                     </div>
                     <div class = "midline"></div>
