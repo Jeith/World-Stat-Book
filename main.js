@@ -1738,6 +1738,12 @@ function loadPage(){
         var $povertyLine = document.getElementById("povertyLine");
         var $gini = document.getElementById("gini");
         var $inflation = document.getElementById("inflation");  
+        var $exchangeRate = document.getElementById("exchangeRate");
+        var $growthRate = document.getElementById("growthRate");
+
+        $exchangeRate.textContent = response["Economy"]["GDP (official exchange rate)"].text.replace(/ *\([^)(]*\) */g, " ").replace(/ *\([^)]*\) */g, "").replace(/[++]/g, '-');
+        $growthRate.textContent = response["Economy"]["GDP - real growth rate"].text.replace(/ *\([^)(]*\) */g, " ").replace(/ *\([^)]*\) */g, "").replace(/[++]/g, '-');
+
         console.log(response["Economy"]["Unemployment rate"].text);
         $unemployment.textContent = response["Economy"]["Unemployment rate"].text.replace(/ *\([^)(]*\) */g, " ").replace(/ *\([^)]*\) */g, "").replace(/[++]/g, '-');
         $povertyLine.textContent = response["Economy"]["Population below poverty line"].text.replace(/ *\([^)(]*\) */g, " ").replace(/ *\([^)]*\) */g, "").replace(/[++]/g, '-');
@@ -1814,7 +1820,7 @@ function loadPage(){
             var agegroup4 = response["People and Society"]["Age structure"]["55-64 years"].text.replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, "").replace(/[%]/g, '');
             var agegroup5 = response["People and Society"]["Age structure"]["65 years and over"].text.replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, "").replace(/[%]/g, '');
             new Chart(ctx1, {
-                type: 'doughnut',
+                type: 'pie',
                 data: {
                     labels: ["0-14 years", "15-24 years", "25-54 years", "55-64 years", "65 years and older"],
                     datasets: [
@@ -1871,7 +1877,7 @@ function loadPage(){
             d.push(response["Economy"]["GDP - composition, by end use"]["imports of goods and services"].text.replace(/[%]/g, '').replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, ""));
 
             new Chart(ctx3, {
-                type: 'bar',
+                type: 'horizontalBar',
                 data: {
                 labels: ["Household%", "Government%", "Fixed Capital %", "Inventories %", "Exports %", "Imports %"],
                 datasets: [
@@ -1899,7 +1905,7 @@ function loadPage(){
                 d.push(response["Economy"]["GDP - composition, by sector of origin"]["industry"].text.replace(/ *\([^)(]*\) */g, "").replace(/[%]/g, '').replace(/ *\([^)]*\) */g, "").replace(/[+]/g, '').replace(/[-]/g, ''));
                 d.push(response["Economy"]["GDP - composition, by sector of origin"]["services"].text.replace(/ *\([^)(]*\) */g, "").replace(/[%]/g, '').replace(/ *\([^)]*\) */g, "").replace(/[+]/g, '').replace(/[-]/g, ''));
                 new Chart(ctx4, {
-                    type: 'doughnut',
+                    type: 'pie',
                     data: {
                         labels: ["agriculture", "industry", "services"],
                         datasets: [
@@ -1938,7 +1944,7 @@ function loadPage(){
                 console.log(d);
                 console.log(l);
                 new Chart(ctx5, {
-                    type: 'doughnut',
+                    type: 'polarArea',
                     data: {
                         labels: l,
                         datasets: [
@@ -1989,7 +1995,7 @@ function loadPage(){
                 let l = response["People and Society"]["Languages"].text.replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, "").replace(/[0-9]/g, '').replace(/[.]/g, '').replace(/[%]/g, '').split(',');
                 let d = response["People and Society"]["Languages"].text.replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, "").replace(/[a-z]/g, '').replace(/[A-Z]/g, '').replace(/[%]/g, '').replace(/[']/g, '').replace(/[/]/g, '').split(',');
                 new Chart(ctx7, {
-                    type: 'doughnut',
+                    type: 'pie',
                     data: {
                         labels: l,
                         datasets: [
@@ -2016,7 +2022,7 @@ function loadPage(){
                 d.push(response["People and Society"]["Urbanization"]["urban population"].text.replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, "").replace(/[a-z]/g, '').replace(/[A-Z]/g, '').replace(/[%]/g, '').replace(/[']/g, '').replace(/[/]/g, ''));
                 d.push(100-d[0]);
                 new Chart(ctx8, {
-                    type: 'doughnut',
+                    type: 'pie',
                     data: {
                         labels: l,
                         datasets: [
