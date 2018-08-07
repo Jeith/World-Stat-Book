@@ -1,4 +1,3 @@
-
 (function() {
     var $randombutton = $('#randombutton');
     $randombutton.click( function(e) {
@@ -859,7 +858,7 @@ function loadPage(){
     }  
 
     function updateUISuccess(response){
-
+        console.log(url)
         // Google map
         var location = response.Government.Capital["geographic coordinates"].text;
         console.log(location);
@@ -938,7 +937,10 @@ function loadPage(){
         $nationalAnthem.textContent = response["Government"]["National anthem"]["name"].text + ": " + response["Government"]["National anthem"]["lyrics/music"].text;
 
         //Economy
-
+        var $exchangeRate = document.getElementById("exchangeRate");
+        var $growthrate = document.getElementById("growthrate");
+        $exchangeRate.textContent = response["Economy"]["GDP (official exchange rate)"].text.replace(/ ([^)]) */g, "").replace(/[++]/g, '-');
+        $growthrate.textContent = response["Economy"]["GDP - real growth rate"].text.replace(/ ([^)]) */g, "").replace(/[++]/g, '-');
 
         var $unemployment = document.getElementById("unemployment");
         var $povertyLine = document.getElementById("povertyLine");
@@ -1329,3 +1331,6 @@ function loadPage(){
     function updateUIError(){
     }  
     }}
+    function clearit(){
+        sessionStorage.clear();
+    }

@@ -72,6 +72,14 @@ button{
     width: 75%;
 
 }
+a{
+    text-decoration: none;
+    color: #343635;
+}
+
+a:hover{
+    color: whitesmoke;
+}
 .countryName{
     font-size: 50px;
     text-decoration: underline;
