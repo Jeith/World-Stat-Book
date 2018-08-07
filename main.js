@@ -1,10 +1,15 @@
 
 (function() {
+    var $randombutton = $('#randombutton');
+    $randombutton.click( function(e) {
+        e.preventDefault();
+        window.location.href = 'countryInfo.html';
+    });
     var $searchbutton = $('#searchbutton');
     $searchbutton.click( function(e) {
         var $searchbar = $('#searchbar')
         var $country = $searchbar.val();
-        localStorage.setItem("country", $country);
+        sessionStorage.setItem("country", $country);
         e.preventDefault();
         window.location.href = 'countryInfo.html';
         var cc;
@@ -801,43 +806,6 @@
     });
 
     function updateUISuccess(response){
-        console.log(response);
-        var intro = response.Geography.Location.text;
-        var head = document.getElementById('head');
-        head.innerHTML = "<h4>" + intro + "</h4>";
-
-       var ctx = document.getElementById("chart1");
-        var agegroup1 = response["People and Society"]["Age structure"]["0-14 years"].text;
-        var agegroup2 = response["People and Society"]["Age structure"]["15-24 years"].text;
-        var agegroup3 = response["People and Society"]["Age structure"]["25-54 years"].text;
-        var agegroup4 = response["People and Society"]["Age structure"]["55-64 years"].text;
-        var agegroup5 = response["People and Society"]["Age structure"]["65 years and over"].text;
-        var age14 = agegroup1.split("", 2);
-        var age24 = agegroup2.split("", 2);
-        var age54 = agegroup3.split("", 2);
-        var age64 = agegroup4.split("", 2);
-        var age65 = agegroup5.split("", 2);
-        console.log(age14.join(""));
-          new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ["0-14 years", "15-24 years", "25-54 years", "55-64 years", "65 years and older"],
-                datasets: [
-                  {
-                    label: "Population (millions)",
-                    backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-                    data: [age14.join(""),age24.join(""),age54.join(""),age64.join(""),age65.join("")]
-                  }
-                ]
-              },
-            options: {
-                title: {
-                  display: true,
-                  text: 'Age Structure'
-                }
-            }
-        });
-
     }
     function updateUIError(){
     }
@@ -857,9 +825,11 @@ function uppercase(str){
 
 // this function starts on countryinfo.html
 function loadPage(){
-    $country = localStorage.getItem("country");
-    var lowerCountry = $country.toLowerCase();
-    var properCountry = uppercase(lowerCountry);
+    $country = sessionStorage.getItem("country");
+    // DAY 6 CHANGE, added if null statment for random button not to execute that
+    if ($country != null){
+        var lowerCountry = $country.toLowerCase();
+    }
         var cc;
         switch(lowerCountry){
             case "aruba":
@@ -1634,8 +1604,18 @@ function loadPage(){
             cc = "zi";
                 break;
         }
-        var url = 'https://raw.githubusercontent.com/Jeith/worldfactbookapi/master/countries/' + cc + ".json";
-
+        // DAY 6 CHANGE, this handles returning a random country code if random is clicked
+        if (cc != null){
+            var url = 'https://raw.githubusercontent.com/Jeith/worldfactbookapi/master/countries/' + cc + ".json";
+        } else {
+            var countryArray = ['AF','AX','AL','DZ','AS','AD','AO','AI','AQ','AG','AR','AM','AW','AU','AT','AZ','BS','BH','BD','BB','BY','BE','BZ','BJ','BM','BT','BO','BQ','BA','BW','BV','BR','IO','VG','BN','BG','BF','BI','KH','CM','CA','CV','KY','CF','TD','CL','CN','CX','CC','CO','KM','CK','CR','HR','CU','CW','CY','CZ','CD','DK','DJ','DM','DO','TL','EC','EG','SV','GQ','ER','EE','ET','FK','FO','FJ','FI','FR','GF','PF','TF','GA','GM','GE','DE','GH','GI','GR','GL','GD','GP','RE','RO','RU','RW','BL','SH','KN','LC','MF','PM','VC','WS','SM','ST','SA','SN','RS','SC','SL','SG','SX','SK','SI','SB','SO','ZA','GS','KR','SS','ES','LK','SD','SR','SJ','SZ','SE','CH','SY','TW','TJ','TZ','TH','TG','TK','TO','TT','TN','TR','TM','TC','TV','VI','UG','UA','AE','GB','US','UY','UZ','VU','VA','VE','VN','WF','EH','YE','ZM','ZW']
+            var lowerCountryArray = [];
+            for (var i = 0; i < countryArray.length; i++){
+                lowerCountryArray.push(countryArray[i].toLocaleLowerCase());
+            }
+            var cd = lowerCountryArray[Math.floor(Math.random() * lowerCountryArray.length)];        
+            var url = 'https://raw.githubusercontent.com/Jeith/worldfactbookapi/master/countries/' + cd + ".json";
+        }
     $.get(url)
     .done(function(response) {
         
@@ -1645,11 +1625,14 @@ function loadPage(){
         updateUISuccess(responseObject)
     })
 
-    .fail(function(error){
-        console.log(error);
+    // DAY 6 CHANGE, i have no idea why but i had to comment this out for it to work with the random button
+    // function updateUIError(){
+    // }  
+    // .fail(function(error){
+    //     console.log(error);
 
-        updateUIError()
-    });
+    //     updateUIError()
+    // });
 
     function updateUISuccess(response){
 
@@ -1786,10 +1769,12 @@ function loadPage(){
             $ImP.appendChild(importsC);
         }
 
+        // DAY 6 CHANGE, changed country name to conventional short form  instead of $country so it could still print it if random was clicked
         var countryName = document.getElementsByClassName("countryName");
         var countryDesc = document.getElementById("countryDesc");
+        var name = response['Government']['Country name']['conventional short form'].text
         for ( var i=0; i < countryName.length; ++i ){
-            countryName[i].innerHTML = properCountry;
+            countryName[i].innerHTML = name;
         }
         countryDesc.innerHTML = response["Introduction"]["Background"].text
 
@@ -2108,7 +2093,5 @@ function loadPage(){
     $EconomyContent.setAttribute("style", "visibility: hidden;");
     $content.setAttribute("style", "visibility: visible");
 
-    function updateUIError(){
-    }  
     }}
 
