@@ -10,17 +10,17 @@
 </head>
 <body onload="loadPage()">
     <header>
-        <h1>World FactBook</h1>
+        <h1><a id="title" href="index.html" onclick="clearit()">World FactBook</a></h1>
         <div class="search">
             <input type="text" placeholder="Search..." id="searchbar">
             <button type="submit" id='searchbutton'><i class="fas fa-search"></i></button>
         </div>
     </header>
     <div class = "sidebar">
-        <button class = "sideButton" id = "geography">Geography</button>
-        <button class = "sideButton" id = "peopleAndSociety">People and Society</button>
-        <button class = "sideButton" id = "government">Government</button>
-        <button class = "sideButton" id = "economy">Economy</button>
+        <button class = "sideButton" id = "geography" style = "font-size: 20px;">Geography</button>
+        <button class = "sideButton" id = "peopleAndSociety" style = "font-size: 20px;">People and Society</button>
+        <button class = "sideButton" id = "government" style = "font-size: 20px;">Government</button>
+        <button class = "sideButton" id = "economy" style = "font-size: 20px;">Economy</button>
     </div>
     <div id="hidebox">
         <div id = "contentBG" class ="content">
@@ -161,7 +161,7 @@
     
                 <div class = "rows econ">
                     <div class= "half">
-                        <div class="section eco">
+                        <div class="section">
                             <p>Official Exchange Rate: </p>
                             <p class = "answer" id="exchangeRate"></p>
                         </div>
@@ -169,9 +169,9 @@
                     </div>
                         <div class = "midline"></div>
                     <div class = "half">
-                        <div class="section eco">
+                        <div class="section">
                             <p>Real Growth Rate: </p>
-                            <p class = "answer" id="growthRate"></p>
+                            <p class = "answer" id="growth rate"></p>
                         </div>
                         <canvas id="chart4" width="400px" height="400px"></canvas>
                     </div>
