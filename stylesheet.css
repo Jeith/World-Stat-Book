@@ -11,6 +11,7 @@ header{
     justify-content: space-between;
     border-bottom: 2px solid black;
     background-color: #7eaba4
+    
 }
 h1{
     margin-left: 4%;
@@ -186,6 +187,7 @@ body{
     width: 98%;
     height: 300px;
     background-color: aliceblue;
+    box-shadow:3px 3px 2px #000;
 }
 .answer, li{
     font-size: 20px;
