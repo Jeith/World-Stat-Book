@@ -1,28 +1,39 @@
-@import url('https://fonts.googleapis.com/css?family=Arimo');
+@import url('https://fonts.googleapis.com/css?family=Lora:400,700|Source+Sans+Pro');
 
 body{
     font-family: 'Arimo', Helvetica, Arial, sans-serif;
-    background-color: white;
+    background-color: #f4eade;
 }
 
 header{
-    background-color: black;
     width: 100%;
-    height: 80px;
-    color: white;
-    font-family: inherit;
-    font-size: 30px;
-    text-align: center;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid black;
+    background-color: #7eaba4
+}
+
+h1{
+    font-size: 50px;
+    color:	#343635;
+    font-family: 'Lora', sans-serif;
     font-weight: 400;
-    letter-spacing: 1.5;
-    height: 50px;
-    border-bottom: 7px solid #2196F3;
+    letter-spacing: 2px;
 }
 
 .enterCountry{
     padding-top: 50px;
     text-align: center;
     font-family: inherit;
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+}
+
+h3{
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 .search{
@@ -81,6 +92,7 @@ footer{
     height: 50px;
 }
 
+
 @media (max-width: 900px) {
     .earth{
         width: 150px;
@@ -110,5 +122,14 @@ footer{
     }
     to{
         background-position: 100% 0;
+    }
+}
+@media(max-width: 550px){
+    h1{
+        font-size: 35px;
+    }
+
+    h3{
+        font-family: 'Source Sans Pro', sans-serif;
     }
 }

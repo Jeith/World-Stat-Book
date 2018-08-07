@@ -1,6 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Lora:400,700|Source+Sans+Pro');
+body{
+    margin: 0 0 0 0;
+}
+
 header{
     width: 100%;
-    height: 100px;
+    height: 65px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -9,15 +14,21 @@ header{
 }
 h1{
     margin-left: 4%;
-    font-size: 100px;
-    color:	#343635
+    font-size: 50px;
+    color:	#343635;
+    font-family: 'Lora', sans-serif;
+    font-weight: 400;
+    letter-spacing: 2px;
 }
 #searchbar{
     height: 25px;
     width: 85%;
 }
 #searchbutton{
-    height: 35px;
+    margin-left: -0.5px;
+    height: 31px;
+    color: white;
+    width: 40px;
 }
 .search{
     margin-right: 5%;
@@ -28,15 +39,15 @@ h1{
     position: fixed;
     left: 0px;
     display: flex;
-    top: 150px;
+    top: 115px;
     flex-direction: column;
-    width: 10%;
+    width: 129px;
     background-color: #7eaba4;
     border-top-right-radius: 5%;
     border-bottom-right-radius: 5%;
     border: 1px solid #f4eade;
     justify-content: space-around;
-    height:600px;
+    height:450px;
 }
 button{
     color: #343635;
@@ -45,7 +56,7 @@ button{
 }
 .sideButton{
     /* word-wrap: break-word; */
-    font-size: 1.4vw;
+    font-size: 19px;
     border-radius: 100%;
     width: 90%;
     height: 80%;
@@ -56,19 +67,26 @@ button{
     position: absolute;
     margin-left: 15%;
     margin-right: 10%;
-    margin-top: 50px;
+    margin-top: 0px;
     width: 75%;
 
 }
-h2{
-    font-size: 75px;
+.countryName{
+    font-size: 50px;
     text-decoration: underline;
     color: #2e4874;
 }
-p{
-    font-size:35px;
+p, ul{
+    font-size:27px;
     color: #2e4874;
+    font-family: 'Source Sans Pro', sans-serif;
+    margin-right: 10px;
 }
+
+#countryDesc{
+    font-size: 23px;
+}
+
 body{
     background-color: #f4eade;
 }
@@ -110,15 +128,15 @@ body{
 #contentBG{
     z-index: 5;
 }
-#hidebox{
-    
 
-}
 .rows{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 20px;
+
+    border-bottom: 1px dashed #343635;
+    padding-bottom:20px;
 }
 .half{
     width:47%;
@@ -138,12 +156,18 @@ body{
 .label{
     font-size: 50px;
 }
+
 #googleMap{
     width: 98%;
     height: 300px;
     background-color: aliceblue;
+    border: 3px solid #343635;
+    border-radius: 5%;
 }
-
+/* .econ{
+    border-bottom: 1px dashed #343635;
+    padding-bottom:20px;
+} */
 #rowP{
     display: flex;
     justify-content: center;
@@ -157,11 +181,25 @@ body{
     height: 100px;
     border: 1px solid black;
 }
+
 #flag{
     width: 98%;
     height: 300px;
     background-color: aliceblue;
 }
+.answer, li{
+    font-size: 20px;
+    padding-top: 15px;
+    color: #343635;
+}
+.section p:first-of-type{
+    float: left;
+    margin-bottom: -10px;
+}
+#g{
+    justify-content: center;
+}
+
 @media(max-width: 1020px){
     h1{
         font-size: 50px;
@@ -216,9 +254,6 @@ body{
     }
 }
 @media(max-width: 450px){
-    p{
-        font-size: 20px;
-    }
     h2{
         font-size: 40px;
     }

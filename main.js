@@ -387,7 +387,7 @@
             cc = "kg";
                 break;
             case "north korea":
-            case "drnk":
+            case "dprk":
             cc = "kn";
                 break;
             case "kiribati":
@@ -747,6 +747,7 @@
             cc = "vq";
                 break;
             case "vatican city":
+            case "the vatican":
             cc = "vt";
                 break;
             case "namibia":
@@ -769,6 +770,7 @@
             cc = "ws";
                 break;
             case "swaziland":
+            case "eswatini":
             cc = "wz";
                 break;
             case "yemen":
@@ -1651,8 +1653,39 @@ function loadPage(){
 
     function updateUISuccess(response){
 
-        var intro = response.Geography.Location.text;
 
+        // Google map
+        var location = response.Government.Capital["geographic coordinates"].text;
+        console.log(location);
+        location = location.replace(",", "");
+        var location1 = location.split(" ");
+        
+        var customLocation = [];
+
+        location1.forEach(function(e){ 
+            if(e == "S" || e == "W"){ 
+                customLocation.push("-");
+            } else if(e == "N" || e == "E"){ 
+                customLocation.push("");
+            } else{ 
+                customLocation.push(e); 
+            } 
+        });
+        var latitude = customLocation[2] + customLocation[0] + "." + customLocation[1];
+        var longitude = customLocation[5] + customLocation[3] + "." + customLocation[4];
+        
+        var lat = parseFloat(latitude);
+        var long = parseFloat(longitude);
+
+        
+        var map;
+        //   function initMap() {
+            map = new google.maps.Map(document.getElementById('googleMap'), {
+                
+            //   center: {lat: 45.25, lng: -75.42},
+                center: {lat: lat, lng: long},
+                zoom: 8
+            });
 
         //  //  LINE INFO  //  //
         //Geography
@@ -1704,7 +1737,9 @@ function loadPage(){
         console.log(response["Economy"]["Unemployment rate"].text);
         $unemployment.textContent = response["Economy"]["Unemployment rate"].text.replace(/ *\([^)(]*\) */g, " ").replace(/ *\([^)]*\) */g, "").replace(/[++]/g, '-');
         $povertyLine.textContent = response["Economy"]["Population below poverty line"].text.replace(/ *\([^)(]*\) */g, " ").replace(/ *\([^)]*\) */g, "").replace(/[++]/g, '-');
-        $gini.textContent = response["Economy"]["Distribution of family income - Gini index"].text.replace(/ *\([^)(]*\) */g, " ").replace(/ *\([^)]*\) */g, "").replace(/[++]/g, '-');
+        if(typeof response["Economy"]["Distribution of family income - Gini index"] !== 'undefined' && typeof response["Economy"]["Distribution of family income - Gini index"].title !== 'undefined'){
+            $gini.textContent = response["Economy"]["Distribution of family income - Gini index"].text.replace(/ *\([^)(]*\) */g, " ").replace(/ *\([^)]*\) */g, "").replace(/[++]/g, '-');
+        }
         $inflation.textContent = response["Economy"]["Inflation rate (consumer prices)"].text.replace(/ *\([^)(]*\) */g, " ").replace(/ *\([^)]*\) */g, "").replace(/[++]/g, '-');
         
         var $AP = document.getElementById("agProduction");
@@ -1751,7 +1786,13 @@ function loadPage(){
             $ImP.appendChild(importsC);
         }
 
-        //  //  CHARTS  //  //
+        var countryName = document.getElementsByClassName("countryName");
+        var countryDesc = document.getElementById("countryDesc");
+        for ( var i=0; i < countryName.length; ++i ){
+            countryName[i].innerHTML = properCountry;
+        }
+        countryDesc.innerHTML = response["Introduction"]["Background"].text
+
         var ctx1 = document.getElementById("chart1");
         var ctx2 = document.getElementById("chart2");
         var ctx3 = document.getElementById("chart3");
@@ -1792,8 +1833,8 @@ function loadPage(){
 
         function religionG(){
             let l = response["People and Society"]["Religions"].text.replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, "").replace(/[0-9]/g, '').replace(/[.]/g, '').replace(/[%]/g, '').split(',');
-            let d = response["People and Society"]["Religions"].text.replace(/[-]/g, '(').replace(/[%]/g, ')').replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, "").replace(/[a-z]/g, '').replace(/[A-Z]/g, '').replace(/[']/g, '').replace(/[/]/g, '').replace(/[)]/g, '').split(',');
-            console.log(d);
+            let d = response["People and Society"]["Religions"].text.replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, "").replace(/[a-z]/g, '').replace(/[A-Z]/g, '').replace(/[%]/g, '').replace(/[']/g, '').replace(/[/]/g, '').split(',');
+        
             new Chart(ctx2, {
                 type: 'doughnut',
                 data: {
@@ -1801,7 +1842,7 @@ function loadPage(){
                     datasets: [
                     {
                         label: "Religions",
-                        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850", "#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850", "#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#e8c3b9","#c45850", "#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850", "#3e95cd", "#8e5ea2"],
                         data: d,
                     }
                     ]
@@ -2019,7 +2060,7 @@ function loadPage(){
                 }
                 MFLifeG();
 
-                var $geography = document.getElementById("geography");
+    var $geography = document.getElementById("geography");
     var $PeopleAndSociety = document.getElementById("peopleAndSociety");
     var $Government = document.getElementById("government");
     var $Economy = document.getElementById("economy");
@@ -2066,7 +2107,7 @@ function loadPage(){
     $GovernmentContent.setAttribute("style", "visibility: hidden");
     $EconomyContent.setAttribute("style", "visibility: hidden;");
     $content.setAttribute("style", "visibility: visible");
-    
+
     function updateUIError(){
     }  
     }}
