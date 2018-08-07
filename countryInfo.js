@@ -1630,6 +1630,8 @@ function loadPage(){
             case "zimbabwe":
             cc = "zi";
                 break;
+            default:
+                cc = $country;
         }
         var url = 'https://raw.githubusercontent.com/Jeith/worldfactbookapi/master/countries/' + cc + ".json";
 
