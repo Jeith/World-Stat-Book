@@ -831,7 +831,8 @@ function loadPage(){
         if (cc != null){
             var url = 'https://raw.githubusercontent.com/Jeith/worldfactbookapi/master/countries/' + cc + ".json";
         } else {
-            var countryArray = ['AF','AL','AS','AO','AQ','AG','AR','AM','AU','BH','BD','BB','BY','BE','BM','BT','BO','BA','BR','BN','BG','BF','CM','CA','CV','CF','TD','CN','HR','CU','CY','CD','DJ','DO','EC','EG','ER','ET','FO','FJ','FR','GA','GM','GH','GR','GL','RO','RW','BL','KN','PM','VC','WS','ST','SA','SN','SC','SL','SG','SI','SO','ZA','ES','SZ','SE','CH','SY','TW','TZ','TH','TK','TO','TT','TN','UG','AE','GB','US','UY','UZ','VE']            var lowerCountryArray = [];
+            var countryArray = ['AF','AL','AS','AO','AQ','AG','AR','AM','AU','BH','BD','BB','BY','BE','BM','BT','BO','BA','BR','BN','BG','BF','CM','CA','CV','CF','TD','CN','HR','CU','CY','CD','DJ','DO','EC','EG','ER','ET','FO','FJ','FR','GA','GM','GH','GR','GL','RO','RW','BL','KN','PM','VC','WS','ST','SA','SN','SC','SL','SG','SI','SO','ZA','ES','SZ','SE','CH','SY','TW','TZ','TH','TK','TO','TT','TN','UG','AE','GB','US','UY','UZ','VE']
+            var lowerCountryArray = [];
             for (var i = 0; i < countryArray.length; i++){
                 lowerCountryArray.push(countryArray[i].toLocaleLowerCase());
             }
