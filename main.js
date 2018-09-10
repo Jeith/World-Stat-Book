@@ -1,4 +1,5 @@
 (function() {
+    // function takes user to a random country's page by setting CC to null and forcing an else statment on line 836
     var $randombutton = $('#randombutton');
     $randombutton.click( function(e) {
         e.preventDefault();
@@ -6,6 +7,8 @@
         var cc = null;
         sessionStorage.setItem("cc", cc);
     });
+    // search button takes user input and stores it into session sstorage. it uses this in tandem with our country code
+    //array to give the information page the right place to pull info froom on the api
     var $searchbutton = $('#searchbutton');
     $searchbutton.click( function(e) {
         var $searchbar = $('#searchbar')
@@ -56,7 +59,7 @@ function loadPage(){
     if ($country != null){
         var lowerCountry = $country.toLowerCase();
     }
-        var cc;
+        var cc; // sets cc on switch statement by searc bar input 
         switch(lowerCountry){
             case "aruba":
                 cc = "aa";
@@ -389,9 +392,6 @@ function loadPage(){
             case "india":
                 cc = "in";
                 break;     
-            case "british indian ocean territory":
-                cc = "io";
-                break; 
             case "clipperton island":
                 cc = "ip";
                 break; 
@@ -558,7 +558,7 @@ function loadPage(){
             cc = "nh";
                 break;
             case "nigeria":
-            cc = "ng";
+            cc = "ni";
                 break;
             case "netherlands":
             cc = "nl";
@@ -826,13 +826,15 @@ function loadPage(){
             case "zimbabwe":
             cc = "zi";
                 break;
+            default:
+            cc = $country;
         }
         // DAY 6 CHANGE, this handles returning a random country code if random is clicked
         sessionStorage.getItem("cc");
-        if (cc != null){
+        if (cc != null){ //checks to see if code is given
             var url = 'https://raw.githubusercontent.com/Jeith/worldfactbookapi/master/countries/' + cc + ".json";
-        } else {
-            var countryArray = ['AF','AL','AS','AO','AQ','AG','AR','AM','AU','BH','BD','BB','BY','BE','BM','BT','BO','BA','BR','IO','BN','BG','BF','CM','CA','CV','CF','TD','CN','CR','HR','CU','CY','CD','DJ','DO','EC','EG','GQ','ER','EE','ET','FO','FJ','FR','GA','GM','GH','GI','GR','GL','RO','RW','BL','KN','PM','VC','WS','SM','ST','SA','SN','SC','SL','SG','SI','SO','ZA','KR','ES','SZ','SE','CH','SY','TW','TZ','TH','TK','TO','TT','TN','TV','UG','AE','GB','US','UY','UZ','VE']
+        } else {//gets random country code from array
+            var countryArray = ['AF','AL','AS','AO','AQ','AG','AR','AM','AU','BH','BD','BB','BY','BE','BM','BT','BO','BA','BR','BN','BG','BF','CM','CA','CV','CF','TD','CN','HR','CU','CY','CD','DJ','DO','EC','EG','ER','ET','FO','FJ','FR','GA','GM','GH','GR','GL','RO','RW','BL','KN','PM','VC','WS','ST','SA','SN','SC','SL','SG','SI','SO','ZA','ES','SZ','SE','CH','SY','TW','TZ','TH','TK','TO','TT','TN','UG','AE','GB','US','UY','UZ','VE']
             var lowerCountryArray = [];
             for (var i = 0; i < countryArray.length; i++){
                 lowerCountryArray.push(countryArray[i].toLocaleLowerCase());
@@ -894,6 +896,7 @@ function loadPage(){
 
         //  //  LINE INFO  //  //
         //Geography
+        //set elements of page
         var $climate = document.getElementById("climate");
         var $terrain = document.getElementById("terrain");
         var $elevation = document.getElementById("elevation");
@@ -901,13 +904,14 @@ function loadPage(){
         var $area = document.getElementById("area");
         var $areaComparison = document.getElementById("areaComparison");
         var $MUA = document.getElementById("MUA");
-
+        //regular expresion to filter bad api inputs and set into page
         let arrMUA = response["People and Society"]["Major urban areas - population"].text.replace(/ *\([^)(]*\) */g, " ").replace(/ *\([^)]*\) */g, "").split(';');
         for(i = 0; i < arrMUA.length; i++){
             let city = document.createElement("li");
             city.textContent = arrMUA[i];
             $MUA.appendChild(city);
         }
+        //set elements with correct content
         $climate.textContent = response["Geography"]["Climate"].text;
         $terrain.textContent = response["Geography"]["Terrain"].text;
         $elevation.textContent = response["Geography"]["Elevation"]["elevation extremes"].text;
@@ -920,28 +924,36 @@ function loadPage(){
         flag.setAttribute("src", pic)
 
        //Government 
+       //set elements of page
         var $entemology = document.getElementById("entemology");
         var $governmentType = document.getElementById("governmentType");
         var $adminDivision = document.getElementById("adminDivision");
         var $independence = document.getElementById("independence");    
         var $legalSystem = document.getElementById("legalSystem");
         var $nationalAnthem = document.getElementById("nationalAnthem");
-
+        // checks to see if this area is covered in the API to fail gracefully if not. then works with regular expressions to create desired output. 
         if(typeof response["Government"]["Country name"]["etymology"] !== 'undefined' && typeof response["Government"]["Country name"]["etymology"].title !== 'undefined'){
             $entemology.textContent = response["Government"]["Country name"]["etymology"].text;
         }
         $governmentType.textContent = response["Government"]["Government type"].text;
         $adminDivision.textContent = response["Government"]["Administrative divisions"].text;
-        $independence.textContent = response["Government"]["Independence"].text;
+       // checks to see if this area is covered in the API to fail gracefully if not. then works with regular expressions to create desired output.
+        if(typeof response["Government"]["Independence"] !== 'undefined' && typeof response["Government"]["Independence"].title !== 'undefined'){
+            $independence.textContent = response["Government"]["Independence"].text.replace(/ *\([^)(]*\) */g, " ").replace(/ *\([^)]*\) */g, "").replace(/[++]/g, '-');
+        }
+        else{
+            $independence.textContent = "Not yet recognized as Independent."
+        }
         $legalSystem.textContent = response["Government"]["Legal system"].text;
         $nationalAnthem.textContent = response["Government"]["National anthem"]["name"].text + ": " + response["Government"]["National anthem"]["lyrics/music"].text;
 
         //Economy
+        //set elements of page
         var $exchangeRate = document.getElementById("exchangeRate");
         var $growthrate = document.getElementById("growthrate");
-        $exchangeRate.textContent = response["Economy"]["GDP (official exchange rate)"].text.replace(/ ([^)]) */g, "").replace(/[++]/g, '-');
-        $growthrate.textContent = response["Economy"]["GDP - real growth rate"].text.replace(/ ([^)]) */g, "").replace(/[++]/g, '-');
-
+        // works with regular expressions to pull correct info from api
+        $exchangeRate.textContent = response["Economy"]["GDP (official exchange rate)"].text.replace(/ *\([^)(]*\) */g, " ").replace(/[++]/g, '-');
+        $growthrate.textContent = response["Economy"]["GDP - real growth rate"].text.replace(/ *\([^)(]*\) */g, " ").replace(/[++]/g, '-');
         var $unemployment = document.getElementById("unemployment");
         var $povertyLine = document.getElementById("povertyLine");
         var $gini = document.getElementById("gini");
@@ -949,6 +961,7 @@ function loadPage(){
         console.log(response["Economy"]["Unemployment rate"].text);
         $unemployment.textContent = response["Economy"]["Unemployment rate"].text.replace(/ *\([^)(]*\) */g, " ").replace(/ *\([^)]*\) */g, "").replace(/[++]/g, '-');
         $povertyLine.textContent = response["Economy"]["Population below poverty line"].text.replace(/ *\([^)(]*\) */g, " ").replace(/ *\([^)]*\) */g, "").replace(/[++]/g, '-');
+        // checks to see if this area is covered in the API to fail gracefully if not. then works with regular expressions to create desired output. 
         if(typeof response["Economy"]["Distribution of family income - Gini index"] !== 'undefined' && typeof response["Economy"]["Distribution of family income - Gini index"].title !== 'undefined'){
             $gini.textContent = response["Economy"]["Distribution of family income - Gini index"].text.replace(/ *\([^)(]*\) */g, " ").replace(/ *\([^)]*\) */g, "").replace(/[++]/g, '-');
         }
@@ -956,6 +969,7 @@ function loadPage(){
         
 
         var $AP = document.getElementById("agProduction");
+        // works with regular expressions to pull correct info from api
 
         let arrAP = response["Economy"]["Agriculture - products"].text.replace(/ *\([^)(]*\) */g, " ").replace(/ *\([^)]*\) */g, "").split(';').join(',').split(',');
         for(i = 0; i < arrAP.length; i++){
@@ -965,6 +979,7 @@ function loadPage(){
         }
         
         var $IP = document.getElementById("indProduction");
+        // works with regular expressions to pull correct info from api
 
         let arrIP = response["Economy"]["Industries"].text.replace(/ *\([^)(]*\) */g, " ").replace(/ *\([^)]*\) */g, "").split(';').join(',').split(',');
         for(i = 0; i < arrIP.length; i++){
@@ -978,6 +993,7 @@ function loadPage(){
         if (index > 0){}
         input = response["Economy"]["Exports"].text.substring(0, index);
         $EP.textContent = "Exports: (" + input.replace(/ *\([^)(]*\) */g, " ").replace(/ *\([^)]*\) */g, "").replace(/ *\([^)]*\) */g, "") + ")";
+        // works with regular expressions to pull correct info from api
 
         let arrEP = response["Economy"]["Exports - commodities"].text.replace(/ *\([^)(]*\) */g, " ").replace(/ *\([^)]*\) */g, "").split(';').join(',').split(',');
         for(i = 0; i < arrEP.length; i++){
@@ -991,6 +1007,7 @@ function loadPage(){
         if (index > 0){}
         input = response["Economy"]["Imports"].text.substring(0, index);
         $ImP.textContent = "Imports: (" + input.replace(/ *\([^)(]*\) */g, " ").replace(/ *\([^)]*\) */g, "").replace(/ *\([^)]*\) */g, "") + ")";
+        // works with regular expressions to pull correct info from api
 
         let arrImP = response["Economy"]["Imports - commodities"].text.replace(/ *\([^)(]*\) */g, " ").replace(/ *\([^)]*\) */g, "").split(';').join(',').split(',');
         for(i = 0; i < arrImP.length; i++){
@@ -999,7 +1016,6 @@ function loadPage(){
             $ImP.appendChild(importsC);
         }
 
-        // DAY 6 CHANGE, changed country name to conventional short form  instead of $country so it could still print it if random was clicked
         var countryName = document.getElementsByClassName("countryName");
         var countryDesc = document.getElementById("countryDesc");
         console.log(response['Government']['Capital']['name'].text);
@@ -1013,6 +1029,13 @@ function loadPage(){
         }
         countryDesc.innerHTML = response["Introduction"]["Background"].text
 
+        /////////////
+        //////////
+        //charts
+        /////
+        //
+
+        //create charts elements
         var ctx1 = document.getElementById("chart1");
         var ctx2 = document.getElementById("chart2");
         var ctx3 = document.getElementById("chart3");
@@ -1023,7 +1046,9 @@ function loadPage(){
         var ctx8 = document.getElementById("chart8");
         var ctx9 = document.getElementById("chart9");
         var ctx10 = document.getElementById("chart10");
+        //agegroup chart
         function ageGroupG(){
+            // data in chart in correct format
             var agegroup1 = response["People and Society"]["Age structure"]["0-14 years"].text.replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, "").replace(/[%]/g, '');
             var agegroup2 = response["People and Society"]["Age structure"]["15-24 years"].text.replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, "").replace(/[%]/g, '');
             var agegroup3 = response["People and Society"]["Age structure"]["25-54 years"].text.replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, "").replace(/[%]/g, '');
@@ -1050,8 +1075,8 @@ function loadPage(){
             });
         }
         ageGroupG();
-
-        function religionG(){
+        //religion chart
+        function religionG(){//get labels and data from api in correct format
             let l = response["People and Society"]["Religions"].text.replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, "").replace(/[0-9]/g, '').replace(/[.]/g, '').replace(/[%]/g, '').split(',');
             let d = response["People and Society"]["Religions"].text.replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, "").replace(/[a-z]/g, '').replace(/[A-Z]/g, '').replace(/[%]/g, '').replace(/[']/g, '').replace(/[/]/g, '').split(',');
         
@@ -1076,8 +1101,8 @@ function loadPage(){
             });
         }   
         religionG();
-
-        function GDPConsumptionG(){
+        //gdp consumption chart
+        function GDPConsumptionG(){// data from economy section in correct/usable format
             let d = [];
             d.push(response["Economy"]["GDP - composition, by end use"]["household consumption"].text.replace(/[%]/g, '').replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, ""));
             d.push(response["Economy"]["GDP - composition, by end use"]["government consumption"].text.replace(/[%]/g, '').replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, ""));
@@ -1108,8 +1133,8 @@ function loadPage(){
             });
             }
             GDPConsumptionG();
-
-            function GDPOriginG(){
+            //gdp origin chart
+            function GDPOriginG(){// data from economy section in correct/usable format
                 let d = [];
                 d.push(response["Economy"]["GDP - composition, by sector of origin"]["agriculture"].text.replace(/ *\([^)(]*\) */g, "").replace(/[%]/g, '').replace(/ *\([^)]*\) */g, "").replace(/[+]/g, '').replace(/[-]/g, ''));
                 d.push(response["Economy"]["GDP - composition, by sector of origin"]["industry"].text.replace(/ *\([^)(]*\) */g, "").replace(/[%]/g, '').replace(/ *\([^)]*\) */g, "").replace(/[+]/g, '').replace(/[-]/g, ''));
@@ -1135,7 +1160,7 @@ function loadPage(){
                 });
             }
             GDPOriginG();
-        
+            //labor force chart
             function laborForceG(){        
                 var economy = response["Economy"]["Labor force - by occupation"];
 
@@ -1174,11 +1199,14 @@ function loadPage(){
                 });
             }
             laborForceG();
-
-            function ethnicityG(){
+            // ethnicity chart
+            function ethnicityG(){//get labels and data from api in correct format
                 let l = response["People and Society"]["Ethnic groups"].text.replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, "").replace(/[0-9]/g, '').replace(/[.]/g, '').replace(/[%]/g, '').split(',');
                 let d = response["People and Society"]["Ethnic groups"].text.replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, "").replace(/[a-z]/g, '').replace(/[A-Z]/g, '').replace(/[%]/g, '').replace(/[']/g, '').replace(/[/]/g, '').split(',');
-            
+                            if(d[0] == "" || d[0] == " " || d[0] == "  " || d[0] == "   "){
+                     l.push("*No information is known on percentages of the population ascribed*");
+                     d.push(" ");
+                }
                 new Chart(ctx6, {
                     type: 'doughnut',
                     data: {
@@ -1200,10 +1228,15 @@ function loadPage(){
                 });
             }   
             ethnicityG();
+            // languages chart
 
-            function languagesG(){
+            function languagesG(){//get labels and data from api in correct format
                 let l = response["People and Society"]["Languages"].text.replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, "").replace(/[0-9]/g, '').replace(/[.]/g, '').replace(/[%]/g, '').split(',');
                 let d = response["People and Society"]["Languages"].text.replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, "").replace(/[a-z]/g, '').replace(/[A-Z]/g, '').replace(/[%]/g, '').replace(/[']/g, '').replace(/[/]/g, '').split(',');
+                if(d[0] == "" || d[0] == " " || d[0] == "  " || d[0] == "   "){
+                     l.push("*No information is known on percentages of the population ascribed*");
+                     d.push(" ");
+                }
                 new Chart(ctx7, {
                     type: 'pie',
                     data: {
@@ -1225,8 +1258,9 @@ function loadPage(){
                 });
             }
             languagesG();
+            // urbanization chart
 
-            function urbanizationG(){
+            function urbanizationG(){//get labels and data from api in correct format
                 let l = ["Urbanization"];
                 let d = [];
                 d.push(response["People and Society"]["Urbanization"]["urban population"].text.replace(/ *\([^)(]*\) */g, "").replace(/ *\([^)]*\) */g, "").replace(/[a-z]/g, '').replace(/[A-Z]/g, '').replace(/[%]/g, '').replace(/[']/g, '').replace(/[/]/g, ''));
@@ -1251,9 +1285,34 @@ function loadPage(){
                     }
                 });
             }
-            urbanizationG();
+            //sets contingency for information being undefined
+            if(typeof response["People and Society"]["Urbanization"] !== 'undefined' && typeof response["People and Society"]["Urbanization"].title !== 'undefined'){
+                urbanizationG();
+            }
+            else{
+                new Chart(ctx8, {
+                    type: 'pie',
+                    data: {
+                        labels: ["No urbanization Data is Known"],
+                        datasets: [
+                        {
+                            label: "Urbanization",
+                            backgroundColor: ["#D3D3D3"],
+                            data: [100],
+                        }
+                        ]
+                    },
+                    options: {
+                        title: {
+                        display: true,
+                        text: 'Urbanization'
+                        }
+                    }
+                });
+            }
+            // Male and female life chart
 
-            function MFLifeG(){
+            function MFLifeG(){//get labels and data from api in correct format
                 let d = [];
                 d.push(response["People and Society"]["Life expectancy at birth"]["total population"].text.replace(/ *\([^)(]*\) */g, "").replace(/[%]/g, '').replace(/ *\([^)]*\) */g, "").replace(/[+]/g, '').replace(/[-]/g, '').replace(/[a-z]/g, '').replace(/[A-Z]/g, ''));
                 d.push(response["People and Society"]["Life expectancy at birth"]["male"].text.replace(/ *\([^)(]*\) */g, "").replace(/[%]/g, '').replace(/ *\([^)]*\) */g, "").replace(/[+]/g, '').replace(/[-]/g, '').replace(/[a-z]/g, '').replace(/[A-Z]/g, ''));
@@ -1289,8 +1348,19 @@ function loadPage(){
     var $GovernmentContent = document.getElementById("contentGO");
     var $EconomyContent = document.getElementById("contentEC");
     var $content = document.getElementById("contentBG")
-    
+    function topFunction() {
+       
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+    } 
+    ///////
+    ///
+    //sidebar buttons
+    ///
+    //////
+
+    //each button sets certain groupings to be invisible while others are visible and brings rthe view back to the top of the view-height
     $geography.onclick = function(){
+        topFunction();
         $geographyContent.setAttribute("style", "visibility: visible");
         $PeopleAndSocietyContent.setAttribute("style", "visibility: hidden");
         $GovernmentContent.setAttribute("style", "visibility: hidden");
@@ -1299,6 +1369,7 @@ function loadPage(){
     }
     
     $PeopleAndSociety.onclick = function(){
+        topFunction();
         $geographyContent.setAttribute("style", "visibility: hidden");
         $PeopleAndSocietyContent.setAttribute("style", "visibility: visible");
         $GovernmentContent.setAttribute("style", "visibility: hidden");
@@ -1307,6 +1378,7 @@ function loadPage(){
     }
     
     $Government.onclick = function(){
+        topFunction();
         $geographyContent.setAttribute("style", "visibility: hidden");
         $PeopleAndSocietyContent.setAttribute("style", "visibility: hidden");
         $GovernmentContent.setAttribute("style", "visibility: visible");
@@ -1315,6 +1387,7 @@ function loadPage(){
     }
     
     $Economy.onclick = function(){
+        topFunction();
         $geographyContent.setAttribute("style", "visibility: hidden");
         $PeopleAndSocietyContent.setAttribute("style", "visibility: hidden");
         $GovernmentContent.setAttribute("style", "visibility: hidden");
@@ -1333,4 +1406,4 @@ function loadPage(){
     }}
     function clearit(){
         sessionStorage.clear();
-    }
+}

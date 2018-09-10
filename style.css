@@ -79,11 +79,9 @@ h3{
 .earth{
     width: 400px;
     height: 400px;
-    /* background-image: url('https://media.treehugger.com/assets/images/2013/06/1.jpg');
-     */
-    background-image: url('http://www.gotosee.tv/gotosee/motionselector/motion/Three.js/images/earth-outline-shifted-gray.png');
-    position: absolute;
-    top: 400px;
+    background-image: url('world.png');
+    position: relative;
+    top: 50px;
     bottom: 0;
     left: 0;
     right: 0;
@@ -111,8 +109,8 @@ footer{
         width: 150px;
         height: 150px;
         background-image: url('http://www.gotosee.tv/gotosee/motionselector/motion/Three.js/images/earth-outline-shifted-gray.png');
-        position: absolute;
-        top: 350px;
+        position: relative;
+        top: 70px;
         bottom: 0;
         left: 0;
         right: 0;

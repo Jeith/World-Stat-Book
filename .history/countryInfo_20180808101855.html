@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,32 +8,26 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link rel="stylesheet" href="stylesheet.css">
 </head>
-<!-- Loads page content from search bar -->
 <body onload="loadPage()">
     <header>
-        <!-- clicking the title takes you home and clears seach storage -->
-        <h1><a id="title" href="index.html" onclick="clearit()">World FactBook</a></h1> 
-        <!-- searchbar -->
-        <div class="search"> 
+        <h1><a id="title" href="index.html" onclick="clearit()">World Stat Book</a></h1>
+        <div class="search">
             <input type="text" placeholder="Search..." id="searchbar">
             <button type="submit" id='searchbutton'><i class="fas fa-search"></i></button>
         </div>
     </header>
-    <!-- nav butttons to reveal different information within the same country -->
-    <div class = "sidebar"> 
+    <div class = "sidebar">
         <button class = "sideButton" id = "geography" style = "font-size: 20px;">Geography</button>
         <button class = "sideButton" id = "peopleAndSociety" style = "font-size: 20px;">People and Society</button>
         <button class = "sideButton" id = "government" style = "font-size: 20px;">Government</button>
         <button class = "sideButton" id = "economy" style = "font-size: 20px;">Economy</button>
     </div>
-    <!-- box containing all information, sections are hidden or revealed deppending on what sidebar button is pressed -->
     <div id="hidebox">
-        <!-- title portion that stays between buttons -->
         <div id = "contentBG" class ="content">
             <h2 class="countryName"></h2>
             <p id="countryDesc"></p>
         </div>
-        <!-- Geography section: has basic info and google api insert -->
+
         <div id="contentGE" class ="content">
                 <div class ="head">
                 <h2 class="countryName"></h2>
@@ -79,8 +73,7 @@
                     </div>
                 </div>
             </div>
-
-            <!-- People and Society section: has chart.js api content -->
+    
             <div id="contentPS" class ="content">
                 <div class ="head">
                                 <h2 class="countryName"></h2>
@@ -119,7 +112,6 @@
                 </div>
             </div>
     
-            <!-- Government section: has basic info flag insert from image files -->
             <div id="contentGO" class ="content">
                 <div class ="head">
                     <h2 class="countryName"></h2>
@@ -151,6 +143,8 @@
                     <div class = "midline"></div>
                     <div class = "half">
                         <img id = "flag" src = "">
+                            
+                        
                         <div class="section">
                             <p>National Anthem: </p>
                             <p class = "answer" id="nationalAnthem"></p>
@@ -159,7 +153,6 @@
                 </div>
             </div>
     
-            <!-- Economy section: has basic info and chart.js api insert -->
             <div id="contentEC" class ="content">
                 <div class ="head">
                                 <h2 class="countryName"></h2>
