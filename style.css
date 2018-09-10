@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Arimo');
+@import url('https://fonts.googleapis.com/css?family=Lora:400,700|Source+Sans+Pro');
 
 body{
     font-family: 'Arimo', Helvetica, Arial, sans-serif;
@@ -6,23 +6,34 @@ body{
 }
 
 header{
-    background-color: black;
     width: 100%;
-    height: 80px;
-    color: white;
-    font-family: inherit;
-    font-size: 30px;
-    text-align: center;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid black;
+    background-color: #7eaba4
+}
+
+h1{
+    font-size: 50px;
+    color:	#343635;
+    font-family: 'Lora', sans-serif;
     font-weight: 400;
-    letter-spacing: 1.5;
-    height: 50px;
-    border-bottom: 7px solid #2196F3;
+    letter-spacing: 2px;
 }
 
 .enterCountry{
     padding-top: 50px;
     text-align: center;
     font-family: inherit;
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+}
+
+h3{
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 .search{
@@ -38,6 +49,20 @@ header{
 }
 
 #searchbutton{
+    width: 100%;
+    float: left;
+    padding: 5px;
+    background: #2196F3;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none; /* Prevent double borders */
+    cursor: pointer;
+    margin-top: 25px;
+    font-family: inherit;
+}
+
+#randombutton{
     width: 100%;
     float: left;
     padding: 5px;
@@ -68,6 +93,7 @@ header{
     animation: spin 40s linear infinite;
 }
 
+<<<<<<< HEAD
 .backgroundHeader{
     display: flex;
     flex-direction: row;
@@ -152,6 +178,16 @@ header{
     background: #7386D5;
     color: #fff;
     transition: all 0.3s;
+=======
+.contain{
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+}
+
+footer{
+    height: 50px;
+>>>>>>> 1bfc4940b292c9388127b9b5b6ae573f0f989adb
 }
 
 @media (max-width: 900px) {
@@ -179,5 +215,14 @@ header{
     }
     to{
         background-position: 100% 0;
+    }
+}
+@media(max-width: 550px){
+    h1{
+        font-size: 35px;
+    }
+
+    h3{
+        font-family: 'Source Sans Pro', sans-serif;
     }
 }

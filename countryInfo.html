@@ -1,55 +1,261 @@
-<!doctype html>
+!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Factbook App</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body onload="loadSearchResults()">
-    <header class="backgroundHeader">
-        <h1>World Graphics</h1>
-        <div class="backgroundSearch">
-            <input type='text' id='bgsearchbar' placeholder='Enter any Country...'>
-            <button type='submit' id='bgsearchbutton' onclick="loadSearchResults()">GO!</button>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Country Background</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<!-- Loads page content from search bar -->
+<body onload="loadPage()">
+    <header>
+        <!-- clicking the title takes you home and clears seach storage -->
+        <h1><a id="title" href="index.html" onclick="clearit()">World FactBook</a></h1> 
+        <!-- searchbar -->
+        <div class="search"> 
+            <input type="text" placeholder="Search..." id="searchbar">
+            <button type="submit" id='searchbutton'><i class="fas fa-search"></i></button>
         </div>
     </header>
-    <div class = "sidebar">
-        <button class = "sideButton" id = "geography">Geography</button>
-        <button class = "sideButton" id = "peopleAndSociety">People and Society</button>
-        <button class = "sideButton" id = "government">Government</button>
-        <button class = "sideButton" id = "economy">Economy</button>
+    <!-- nav butttons to reveal different information within the same country -->
+    <div class = "sidebar"> 
+        <button class = "sideButton" id = "geography" style = "font-size: 20px;">Geography</button>
+        <button class = "sideButton" id = "peopleAndSociety" style = "font-size: 20px;">People and Society</button>
+        <button class = "sideButton" id = "government" style = "font-size: 20px;">Government</button>
+        <button class = "sideButton" id = "economy" style = "font-size: 20px;">Economy</button>
     </div>
-        <div class ="content">
-            <h2 id="countryName"></h2>
-            <div id="countryBackgroundDiv">
-            <p id="countryBackground"></p>
+    <!-- box containing all information, sections are hidden or revealed deppending on what sidebar button is pressed -->
+    <div id="hidebox">
+        <!-- title portion that stays between buttons -->
+        <div id = "contentBG" class ="content">
+            <h2 class="countryName"></h2>
+            <p id="countryDesc"></p>
         </div>
-    </div>
-    <div class='row' id="peopleCharts">
-        <div class="col-sm-5"></div>
-        <div class="col-sm-5">
-            <canvas id="chart1" width="400px" height="400px"></canvas>
-        </div>
-    </div>
-    </body>
+        <!-- Geography section: has basic info and google api insert -->
+        <div id="contentGE" class ="content">
+                <div class ="head">
+                <h2 class="countryName"></h2>
+                    <p class = "label">-  Geography</p>
+                </div>
+                <div class = "rows">
+                    <div class= "half">
+                        <div class="section">
+                            <p>Climate: </p>
+                            <p class = "answer" id="climate"></p>
+                        </div>
+                        <div class="section">
+                            <p>Terrain: </p>
+                            <p class = "answer" id= "terrain"></p>
+                        </div>
+                        <div class="section">
+                            <p>Elevation Extremes: </p>
+                            <p class = "answer" id="elevation"></p>
+                        </div>
+                        <div class="section">
+                            <p>Natural Hazzards: </p>
+                            <p class = "answer" id= "naturalHazzards"></p>
+                        </div>
+                        <div>
+                            <ul id = "MUA">Major Urban Areas: </ul>
+                        </div>
+                    </div>
+                    <div class = "midline">
+                        
+                    </div>
+                    <div class = "half"id="g">
+                        <div id = "googleMap">
+                            Google Map
+                        </div>
+                        <div class="section">
+                            <p>Area: </p>
+                            <p class = "answer" id="area"></p>
+                        </div>
+                        <div class="section">
+                            <p>Area Comparison: </p>
+                            <p class = "answer" id= "areaComparison"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- People and Society section: has chart.js api content -->
+            <div id="contentPS" class ="content">
+                <div class ="head">
+                                <h2 class="countryName"></h2>
+                    <p class = "label">-  People and Society</p>
+                </div>
+                <div id = "rowP">
+                    <p class= "populationLabel">Population: </p>
+                    <p class = "answer" id = "population"> </p>
+                </div>
+                <div class = "rows">
+                    <div class= "half">
+                            <canvas id="chart1" width="400px" height="400px"></canvas>
+                    </div>
+                    <div class = "midline"></div>
+                    <div class = "half">
+                            <canvas id="chart2" width="400px" height="400px"></canvas>
+                    </div>
+                </div>
+                <div class = "rows">
+                    <div class= "half">
+                            <canvas id="chart6" width="400px" height="400px"></canvas>
+                    </div>
+                    <div class = "midline"></div>
+                    <div class = "half">
+                            <canvas id="chart7" width="400px" height="400px"></canvas>
+                    </div>
+                </div>
+                <div class = "rows">
+                    <div class= "half">
+                            <canvas id="chart8" width="400px" height="400px"></canvas>
+                    </div>
+                    <div class = "midline"></div>
+                    <div class = "half">
+                            <canvas id="chart9" width="400px" height="400px"></canvas>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Government section: has basic info flag insert from image files -->
+            <div id="contentGO" class ="content">
+                <div class ="head">
+                    <h2 class="countryName"></h2>
+                    <p class = "label">-  Government</p>
+                </div>
+                <div id = "rowP">
+                    <p class= "entemologyLabel">Etymology: </p>
+                    <p class = "answer" id = "entemology"> </p>
+                </div>
+                <div class = "rows">
+                    <div class= "half">
+                        <div class="section">
+                            <p>Government Type: </p>
+                            <p class = "answer" id="governmentType"></p>
+                        </div>
+                        <div class="section">
+                            <p>Admin Division: </p>
+                            <p class = "answer" id= "adminDivision"></p>
+                        </div>
+                        <div class="section">
+                            <p>Independence: </p>
+                            <p class = "answer" id="independence"></p>
+                        </div>
+                        <div class="section">
+                            <p>Legal System: </p>
+                            <p class = "answer" id= "legalSystem"></p>
+                        </div>
+                    </div>
+                    <div class = "midline"></div>
+                    <div class = "half">
+                        <img id = "flag" src = "">
+                        <div class="section">
+                            <p>National Anthem: </p>
+                            <p class = "answer" id="nationalAnthem"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Economy section: has basic info and chart.js api insert -->
+            <div id="contentEC" class ="content">
+                <div class ="head">
+                                <h2 class="countryName"></h2>
+                    <p class = "label">-  Economy</p>
+                </div>
+    
+                <div class = "rows econ">
+                    <div class= "half">
+                        <div class="section">
+                            <p>Official Exchange Rate: </p>
+                            <p class = "answer" id="exchangeRate"></p>
+                        </div>
+                        <canvas id="chart3" width="400px" height="400px"></canvas>
+                    </div>
+                        <div class = "midline"></div>
+                    <div class = "half">
+                        <div class="section">
+                            <p>Real Growth Rate: </p>
+                            <p class = "answer" id="growthrate"></p>
+                        </div>
+                        <canvas id="chart4" width="400px" height="400px"></canvas>
+                    </div>
+                </div>
+    
+                <div class = "rows econ">
+                    <div class= "half">
+                        <ul id = "agProduction">Agricultural Production</ul>
+                    </div>
+                    <div class = "midline"></div>
+                    <div class = "half">
+                        <ul id = "indProduction">Industries</ul>
+                    </div>
+                </div>
+    
+                <div class = "rows econ">
+                    <div class= "half">
+                        <div class="section">
+                            <p>Unemployment Rate: </p>
+                            <p class = "answer" id="unemployment"></p>
+                        </div>
+                        <div class="section">
+                            <p>Population Below Powerty Line: </p>
+                            <p class = "answer" id= "povertyLine"></p>
+                        </div>
+                        <div class="section">
+                            <p>Gini Index: </p>
+                            <p class = "answer" id="gini"></p>
+                        </div>
+                        <div class="section">
+                            <p>Inflation Rate: </p>
+                            <p class = "answer" id="inflation"></p>
+                        </div>
+                    </div>
+                    <div class = "midline"></div>
+                    <div class = "half">
+                            <canvas id="chart5" width="400px" height="400px"></canvas>
+                    </div>
+                </div>
+                <div class = "rows">
+                    <div class= "half">
+                        <ul id = "exports">Total Exports: </ul>
+                    </div>
+                    <div class = "midline"></div>
+                    <div class = "half">
+                        <ul id = "imports">Total Imports:</ul>
+                    </div>
+                </div>
+            </div>
+        </div>    
+
+
     <script
     src="https://code.jquery.com/jquery-3.3.1.js"
     integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
     crossorigin="anonymous"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8Qz_yg_xOGzY73WTonlSf3yKwuD2XLNk&callback=initMap"
+    async defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script src='main.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
-    <script src='main.js'></script>
-    <script>
-            function w3_open() {
-              document.getElementById("mySidebar").style.display = "block";
-            }
-            function w3_close() {
-              document.getElementById("mySidebar").style.display = "none";
-            }
-            </script>
-    </body>
+
+</body>
 </html>
+
+    © 2018 GitHub, Inc.
+    Terms
+    Privacy
+    Security
+    Status
+    Help
+
+    Contact GitHub
+    Pricing
+    API
+    Training
+    Blog
+    About
+
